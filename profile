@@ -32,6 +32,8 @@ siteenv () {
    . "$SITEBASE"/github/site-spec/profile
 }
 
+. "$TPSUP"/profile
+
 kdbnotes () {
    cd "$TPSUP/../kdb/notes"
 }
