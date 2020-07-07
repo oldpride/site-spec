@@ -1,0 +1,51 @@
+#!/bin/bash
+
+SITEBASE=~/testbase
+src_host=linux1
+src_dir=~/github
+dst_dir=$SITEBASE/github
+
+usage () {
+   cat  <<EOF
+usage:
+
+   $0 check
+   $0 sync
+
+   copy $src_dir to $dst_dir
+
+   must run from $src_host
+
+EOF
+   exit 1   
+}
+
+
+if [ $# -ne 1 ]; then
+   echo "wrong number of args"
+   usage
+fi
+
+action = $1
+
+localhost=`hostname`
+
+if [ $localhost != $src_host ]; then
+   echo "ERROR: must run from from $src_host. you are on $localhost"
+   usage
+fi
+
+if [ $action = check ]; then
+   flag='-n'
+elif [ $action = sync ]; then
+   flag=''
+else
+   echo "ERROR: unknown action='$action'"
+   usage
+fi
+
+set -x 
+
+rsync $flag -av --delete --exclude='[.]git' --exclude='[.]nfs*' --exclude='*.sw?' \
+   --exclude='[.]idea' --exclude=__pycache__ --exclude='*[.]github' $src_dir/tpsup $dst_dir
+
