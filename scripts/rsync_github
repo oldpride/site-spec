@@ -26,7 +26,7 @@ if [ $# -ne 1 ]; then
    usage
 fi
 
-action = $1
+action=$1
 
 localhost=`hostname`
 
@@ -43,6 +43,9 @@ else
    echo "ERROR: unknown action='$action'"
    usage
 fi
+
+cd $src_dir || exit 1
+cd $dst_dir || exit 1
 
 set -x 
 
