@@ -2,9 +2,13 @@
 
 Linux=`uname -a |awk '{print $3}'| cut -d. -f1,2`
 
-default_remote_host=LAPTOP-4DDGKLFF.fios-router.home
+#default_remote_host=LAPTOP-4DDGKLFF.fios-router.home
+#default_remote_port=5555
+#default_remote_base=/cygdrive/c/users/william/sitebase
+#default_remote_dirs="github lib/perl"
+default_remote_host=linux1.fios-router.home
 default_remote_port=5555
-default_remote_base=/cygdrive/c/users/william/sitebase
+default_remote_base=/home/tian/sitebase
 default_remote_dirs="github lib/perl"
 
 
@@ -28,6 +32,9 @@ usage:
    -d remote_dirs                       default $default_remote_dirs
    -a app_env                           support app_env: cygwin
    -v                                   verbose
+
+examples:
+
 
 EOF
    exit 1
