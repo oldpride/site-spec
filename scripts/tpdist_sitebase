@@ -43,7 +43,7 @@ do
       b) remote_base=$OPTARG;;
       d) remote_dirs=$OPTARG;;
       v) set -x;;
-      *) echo "unknown switch='$o'; usage;;
+      *) echo "unknown switch='$o'"; usage;;
    esac
 done
 
@@ -83,13 +83,13 @@ echo "INFO: $local_base is resolved to: $real_local_base"
 
 me=`id |cut -d\( -f2|cut -d\) -f1`
 
-if [ -e "$real_local_base ]; then
+if [ -e "$real_local_base" ]; then
    owner=`/bin/ls -lLd $real_local_base|awk '{print $3}'`
-   echo :INFO: real_local_base $real_local_base owner=$owner"
-   target=$real_local_base
+   echo "INFO: real_local_base $real_local_base owner=$owner"
+   target="$real_local_base"
 else
    owner=`/bin/ls -lLd $real_parent_base|awk '{print $3}'`
-   echo :INFO: real_parent_base $real_parent_base owner=$owner"
+   echo ":INFO: real_parent_base $real_parent_base owner=$owner"
    target=$real_parent_base
 fi
 
@@ -106,7 +106,7 @@ else
    real_sitebase=$(cd $SITEBASE && pwd -P)
    [ $? -eq 0 ] || exit 1
    if [ $real_sitebase  != $real_local_base -a $real_sitebase/. != $real_local_base ]; then
-      echo ""SITEBASE ($SITEBASE) != local_base ($real_local_base)"
+      echo "SITEBASE ($SITEBASE) != local_base ($real_local_base)"
       not_sure=Y
    fi
 fi
@@ -118,7 +118,7 @@ if [ $not_sure = Y ]; then
    if [[ $answer =~ ^[Yy]es ]]; then
       echo "answer='$answer', go ahead"
    else
-      echo "answer='$answer', quit"
+      echo "answer='$answer', is not yes or Yes, quit"
       exit 0
    fi
 fi
@@ -138,7 +138,7 @@ do
    (set -x; 
     tpdist -q -timeout 3600 client $remote_host $remote_port $flag \
        --exclude '[.]git/|[.]swp|[.]nfs|[.]idea|[.]github|__pycache__' \
-       "$remote_base/$remote_dir" "$local_base/$sub_base
+       "$remote_base/$sub_dir" "$local_base/$sub_base"
    )
 done
 
