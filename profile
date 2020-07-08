@@ -2,9 +2,9 @@
 
 if [ "X$BASH_SOURCE" != "X" ]; then
    # example:
-   #    BASH_SOURCE is /home/tian/sitedir/github/site-spec/profile 
-   #    SITEBASE    is /home/tian/sitedir
-   #    TPSUP       is /home/tian/sitedir/github/tpsup
+   #    BASH_SOURCE is /home/tian/sitebase/github/site-spec/profile 
+   #    SITEBASE    is /home/tian/sitebase
+   #    TPSUP       is /home/tian/sitebase/github/tpsup
    SITEBASE=$(cd "`dirname \"$BASH_SOURCE\"`/../..";        pwd -P) || return
       TPSUP=$(cd "`dirname \"$BASH_SOURCE\"`/../tpsup";     pwd -P) || return
    SITESPEC=$(cd "`dirname \"$BASH_SOURCE\"`/../site-spec"; pwd -P) || return
@@ -16,10 +16,12 @@ else
       return
    else
       echo "You used wrong bash (check version). please exit and find a newer version instead !!!" >&2
-      echo " Or you can export BASH_SOURCE=/home/$USERNAME/sitedir/github/tpsup/profile or something similar" >&2
+      echo " Or you can export BASH_SOURCE=/home/$USERNAME/sitebase/github/tpsup/profile or something similar" >&2
       return
    fi
 fi
+
+export PATH=$PATH:$SITEBASE/scripts
 
 # feel free to rename variables and functions as we won't sync this file back to github once cloned.
 #export LOCAL_CURL_PROXY="--proxy proxy.abc.net:8080"
@@ -186,8 +188,8 @@ pythonenv () {
    fi
 
    if [[ $UNAME =~ Cygwin ]]; then
-      # cygwin converts PYTHONPATH's /cygdrive/c/users/$USERNAME/sitedir/github/... 
-      # into sys.path C:/cygdrive/c/users/$USERNAME/sitedir/github/... 
+      # cygwin converts PYTHONPATH's /cygdrive/c/users/$USERNAME/sitebase/github/... 
+      # into sys.path C:/cygdrive/c/users/$USERNAME/sitebase/github/... 
       # therefore, we drop the front two parts: /cygdrive/c
       # Also Note: use semi-colon ; as separator
 
@@ -207,11 +209,11 @@ pythonenv () {
       echo "                                                         :w
       ./tpcsv.py"
       echo "   python                                                ./tpcsv.py"
-      echo "   C:/Users/$USERNAME/sitedir/github/tpsup/python3/scripts/tpcsv.py"
+      echo "   C:/Users/$USERNAME/sitebase/github/tpsup/python3/scripts/tpcsv.py"
       echo "Absolute path doesn't work, eg"
       echo "                                                                      tpcsv.py"
       echo "   python                                                             tpcsv.py"
-      echo "   /cygdrive/c/Users/$USERNAME/sitedir/github/tpsup/python3/lib/tpsup/tpcsv.py"
+      echo "   /cygdrive/c/Users/$USERNAME/sitebase/github/tpsup/python3/lib/tpsup/tpcsv.py"
    fi    
 
    # export the function
