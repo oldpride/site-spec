@@ -17,24 +17,36 @@ remote_port=$default_remote_port
 remote_base=$default_remote_base
 remote_dirs=$default_remote_dirs
 
+prog=`basename $0`
+
 usage () {
    cat <<EOF
 
 usage:
 
-   $0 check
-   $0 sync
+   $prog check
+   $prog sync
 
    copy remote sitebase to local
 
    -s remote_server:remote_host         default $default_remote_host:$default_remote_port
+
    -b remote_base                       default $default_remote_base
+
    -d remote_dirs                       default $default_remote_dirs
+                                        because other folders are huge
+
    -a app_env                           support app_env: cygwin
+
    -v                                   verbose
 
 examples:
 
+   - from cygwin host
+   mkdir ~/testbase
+   cd ~/testbase
+   $prog check .
+   
 
 EOF
    exit 1
