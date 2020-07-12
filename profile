@@ -94,6 +94,10 @@ lca () {
    cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l
 }
 
+vncserver () {
+   /usr/bin/vncserver -geometry 1366x768 "$@"
+}
+
 tpproxy () {
    local usage
    usage="
