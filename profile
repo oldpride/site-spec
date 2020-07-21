@@ -80,6 +80,10 @@ myperllib () {
    cd "$TPSUP/lib/perl/TPSUP"
 }
 
+myperltest () {
+   cd "$TPSUP/lib/perltest"
+}
+
 mysite () {
    # for compatibility with corp settings
    cd "$SITESPEC/scripts"
@@ -88,6 +92,11 @@ mysite () {
 mytp () {
    # for compatibility with corp settings
    cd "$TPSUP/scripts"
+}
+
+perltestenv () {
+   export PERL5LIB=$TPSUP/lib/perltest:$PERL5LIB
+   reduce PERL5LIB
 }
 
 lca () {
