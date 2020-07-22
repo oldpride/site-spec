@@ -51,6 +51,10 @@ mycpp () {
    cd "$TPSUP/../cpp/cookbook/src"
 }
 
+mycmd () {
+   cd "$TPSUP/cmd_exe"
+}
+
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
       cd /c/users/$USER/eclipse-workspace
@@ -82,6 +86,10 @@ myperllib () {
 
 myperltest () {
    cd "$TPSUP/lib/perltest"
+}
+
+myps1 () {
+   cd "$TPSUP/ps1"
 }
 
 mysite () {
