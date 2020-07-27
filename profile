@@ -214,7 +214,7 @@ pythonenv () {
       # therefore, we drop the front two parts: /cygdrive/c
       # Also Note: use semi-colon ; as separator
 
-      export PYTHONPATH="/Users/$USER/github/tpsup/python$expected_version/lib;$PYTHONPATH"
+      export PYTHONPATH="/Users/$USER/sitebase/github/tpsup/python$expected_version/lib;$PYTHONPATH"
    else
       export PYTHONPATH="$TPSUP/python$expected_version/lib:$PYTHONPATH"
    fi
