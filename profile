@@ -249,5 +249,20 @@ p3env () {
    pythonenv $@ 3 
 }
 
+selenium () {
+   # set PATH for webdriver and browser
+
+   # linux: /usr/bin/chromedriver, /usr/bin/chromium-browser
+
+   if [[ $UNAME =~ Cygwin ]]; then
+      export PATH=$PATH:'/cygdrive/C/Program Files (x86)/Google/Chrome/Application':/cygdrive/C/users/$USER
+      reduce
+   elif [[ $UNAME =~ Msys ]]; then
+     export PATH=$PATH:'/C/Program Files (x86)/Google/Chrome/Application':~
+      reduce
+   fi
+}
+
+
 p3env -q  # this command takes about 2 seconds as it calls reduce()
 
