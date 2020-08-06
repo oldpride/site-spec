@@ -193,6 +193,10 @@ pythonenv () {
       elif [ $expected_version = 2 ]; then
          export PATH="/c/Program Files/Python27:$PATH"
       fi
+
+      # GitBash buffers stdout by default. Disable the bufferring
+      # https://stackoverflow.com/questions/107705/disable-output-buffering
+      export PYTHONUNBUFFERED=Y
    fi
 
    python=`which python`
