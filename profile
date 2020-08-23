@@ -6,9 +6,10 @@ if [ "X$BASH_SOURCE" != "X" ]; then
    #    SITEBASE    is /home/tian/sitebase
    #    TPSUP       is /home/tian/sitebase/github/tpsup
    SITEBASE=$(cd "`dirname \"$BASH_SOURCE\"`/../..";        pwd -P) || return
-      TPSUP=$(cd "`dirname \"$BASH_SOURCE\"`/../tpsup";     pwd -P) || return
    SITESPEC=$(cd "`dirname \"$BASH_SOURCE\"`/../site-spec"; pwd -P) || return
+      TPSUP=$(cd "`dirname \"$BASH_SOURCE\"`/../tpsup";     pwd -P) || return
    export SITEBASE
+   export SITESPEC
    export TPSUP
 else
    if ! [[ "$0" =~ bash ]]; then
