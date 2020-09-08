@@ -1,15 +1,28 @@
 #!/bin/bash  # this line is purely to let the editor to activate BASH check
 
+# you can add this one liner to user's .profile or .bash_profile
+#   siteenv () { . ~/sitebase/github/site-spec/profile }
+
+# this is for Cygwin
+if [ "X$USERNAME" = "X" ]; then
+   if [ "X$LOGNAME" != "X" ]; then
+      # $USERNAME is set after we start cygwin terminal from taskbar
+      # $LOGNAME is set after we logged into cygwin sshd
+      export USERNAME=$LOGNAME
+   else 
+      USERNAME=`id |cut -d\( -f2|cut -d\) -f1`
+   fi
+fi
+
 if [ "X$BASH_SOURCE" != "X" ]; then
    # example:
    #    BASH_SOURCE is /home/tian/sitebase/github/site-spec/profile 
    #    SITEBASE    is /home/tian/sitebase
+   #    SITESPEC    is /home/tian/sitebase/github/site-spec
    #    TPSUP       is /home/tian/sitebase/github/tpsup
-   SITEBASE=$(cd "`dirname \"$BASH_SOURCE\"`/../..";        pwd -P) || return
-      TPSUP=$(cd "`dirname \"$BASH_SOURCE\"`/../tpsup";     pwd -P) || return
-   SITESPEC=$(cd "`dirname \"$BASH_SOURCE\"`/../site-spec"; pwd -P) || return
-   export SITEBASE
-   export TPSUP
+   export SITEBASE=$(cd "`dirname \"$BASH_SOURCE\"`/../..";        pwd -P) || return
+   export SITESPEC=$SITEBASE/github/site-spec
+   export    TPSUP=$SITEBASE/github/tpsup
 else
    if ! [[ "$0" =~ bash ]]; then
       echo "Run bash first ... Env is not set !!!" >&2
@@ -218,9 +231,9 @@ pythonenv () {
       # therefore, we drop the front two parts: /cygdrive/c
       # Also Note: use semi-colon ; as separator
 
-      export PYTHONPATH="/Users/$USER/sitebase/github/tpsup/python$expected_version/lib;$PYTHONPATH"
+      export PYTHONPATH="/Users/$USER/sitebase/github/tpsup/python$expected_version/lib;$SITEBASE/Windows/win10-python3.7/lib/site-packages:$PYTHONPATH"
    else
-      export PYTHONPATH="$TPSUP/python$expected_version/lib:$PYTHONPATH"
+      export PYTHONPATH="$TPSUP/python$expected_version/lib:$SITEBASE/Linux/linux3.10-python3.7/lib/site-packages:$PYTHONPATH:"
    fi
 
    reduce  # this takes about 2 seconds
