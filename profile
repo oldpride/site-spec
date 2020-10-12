@@ -84,6 +84,10 @@ myjoomla () {
    cd "$TPSUP/../joomla/php"
 }
 
+kungfusql () {
+   cd "$TPSUP/../com_kungfulsql"
+}
+
 mykivy () {
    cd "$TPSUP/../kivy"
 }
