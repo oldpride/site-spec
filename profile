@@ -284,6 +284,17 @@ selenium () {
    fi
 }
 
+if [[ $UNAME =~ Linux ]]; then
+   sitevim () {
+      # if the site has no full-featured vim, install it and then turn on this function
+      if [ "X$TERM" = "Xxterm" -o "X$TERM" = "Xvt100" ]; then
+         echo -ne "\033]0;vim $@\007"
+      fi
+
+      LD_LIBRARY_PATH=$SITEBASE/Linux/$Linux/usr/lib64 TERMINFO=/usr/share/terminfo $SITEBASE/Linux/$Linux/usr/bin/vim "$@"
+   }
+fi
+
 
 p3env -q  # this command takes about 2 seconds as it calls reduce()
 
