@@ -287,7 +287,7 @@ selenium () {
 if [[ $UNAME =~ Linux ]]; then
    sitevim () {
       # if the site has no full-featured vim, install it and then turn on this function
-      if [ "X$TERM" = "Xxterm" -o "X$TERM" = "Xvt100" ]; then
+      if [[ $TERM =~ xterm|^vt ]]; then
          echo -ne "\033]0;vim $@\007"
       fi
 
