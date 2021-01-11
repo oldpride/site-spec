@@ -49,9 +49,7 @@ siteenv () {
 
 . "$TPSUP"/profile
 
-kdbnotes () {
-   cd "$TPSUP/../kdb/notes"
-}
+kdbnotes () { cd "$TPSUP/../kdb/notes"; }
 
 myandroid () {
    export ANDROID_HOME=${HOME}/Android/Sdk
@@ -60,13 +58,9 @@ myandroid () {
    export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
 }
 
-mycpp () {
-   cd "$TPSUP/../cpp/cookbook/src"
-}
+mycpp () { cd "$TPSUP/../cpp/cookbook/src"; }
 
-mycmd () {
-   cd "$TPSUP/cmd_exe"
-}
+mycmd () { cd "$TPSUP/cmd_exe"; }
 
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
@@ -80,34 +74,22 @@ myjava () {
    fi
 }
 
-myjoomla () {
-   cd "$TPSUP/../joomla/php"
-}
+myjoomla () { cd "$TPSUP/../joomla/php"; }
 
-kungfusql () {
-   cd "$TPSUP/../com_kungfulsql"
-}
+kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 
-mykivy () {
-   cd "$TPSUP/../kivy"
-}
+mykivy () { cd "$TPSUP/../kivy"; }
 
-mynotes () {
-   cd "$TPSUP/../notes"
-}
+mynotes () { cd "$TPSUP/../notes"; }
 
 myperllib () {
    # for compatibility with corp settings
    cd "$TPSUP/lib/perl/TPSUP"
 }
 
-myperltest () {
-   cd "$TPSUP/lib/perltest"
-}
+myperltest () { cd "$TPSUP/lib/perltest"; }
 
-myps1 () {
-   cd "$TPSUP/ps1"
-}
+myps1 () { cd "$TPSUP/ps1"; }
 
 mysite () {
    # for compatibility with corp settings
@@ -124,13 +106,9 @@ perltestenv () {
    reduce PERL5LIB
 }
 
-lca () {
-   cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l
-}
+lca () { cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l; }
 
-vncserver () {
-   /usr/bin/vncserver -geometry 1366x768 "$@"
-}
+vncserver () { /usr/bin/vncserver -geometry 1366x768 "$@"; }
 
 tpproxy () {
    local usage
@@ -295,6 +273,11 @@ if [[ $UNAME =~ Linux ]]; then
    }
 fi
 
-
 p3env -q  # this command takes about 2 seconds as it calls reduce()
 
+# https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+# -a  Each variable or function that is created or modified is given the export attribute
+#     and marked for export to the environment of subsequent commands "
+# -b  Cause the status of terminated background jobs to be reported immediately, rather than
+#     before printing the next primary prompt.
+set -ab
