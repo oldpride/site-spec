@@ -82,6 +82,11 @@ mykivy () { cd "$TPSUP/../kivy"; }
 
 mynotes () { cd "$TPSUP/../notes"; }
 
+mycad () { cd "$TPSUP/../freecad"; }
+
+myduino () { cd "$TPSUP/../arduino"; }
+
+
 myperllib () {
    # for compatibility with corp settings
    cd "$TPSUP/lib/perl/TPSUP"
