@@ -86,6 +86,7 @@ mycad () { cd "$TPSUP/../freecad"; }
 
 myduino () { cd "$TPSUP/../arduino"; }
 
+testreduce () { echo "test reduce"; reduce;}
 
 myperllib () {
    # for compatibility with corp settings
