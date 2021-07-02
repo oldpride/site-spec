@@ -107,6 +107,23 @@ mytp () {
    cd "$TPSUP/scripts"
 }
 
+# automatically cd or mkdir to a latest sub-folder
+myrel () { cdlatest ~/releases; }
+mkrel () { 
+   if [ $# -ne 1 ]; then
+      echo "wrong number of args."
+      echo "usage:    mkrel string"
+      echo "example:  mkrel app1"
+      return
+   fi
+   
+   local RELDIR; 
+   RELDIR=~/releases/"`date +%Y%m%d`_$1"; 
+
+   [ -d $RELDIR ] || mkdir -p $RELDIR
+   cd $RELDIR
+}
+
 perltestenv () {
    export PERL5LIB=$TPSUP/lib/perltest:$PERL5LIB
    reduce PERL5LIB
