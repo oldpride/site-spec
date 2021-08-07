@@ -108,7 +108,10 @@ mytp () {
 }
 
 # automatically cd or mkdir to a latest sub-folder
-myrel () { cdlatest ~/releases; }
+myrel () {
+   cdlatest "$@" ~/releases
+}
+
 mkrel () { 
    if [ $# -ne 1 ]; then
       echo "wrong number of args."
