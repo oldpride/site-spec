@@ -34,7 +34,7 @@ else
    fi
 fi
 
-export PATH=$PATH:$SITEBASE/github/site-spec/scripts
+export PATH=$PATH:$SITEBASE/github/site-spec/scripts:/opt/mssql-tools/bin
 
 # feel free to rename variables and functions as we won't sync this file back to github once cloned.
 #export LOCAL_CURL_PROXY="--proxy proxy.abc.net:8080"
