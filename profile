@@ -137,24 +137,31 @@ lca () { cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l; }
 vncserver () { /usr/bin/vncserver -geometry 1366x768 "$@"; }
 
 tpproxy () {
-   local usage
+   local usage my_proxy my_pac
    usage="
 usage:
    tpproxy is a bash function.
    tpproxy check
    tpproxy set
 "
+   my_proxy="http://proxy.abc.net:8080"
+   my_pac="http://pac.abc.net/"
+
+   # tp_pac is only used by tpsup scripts, eg, tpchrome, tpchromium
 
    if [ "X$1" = "Xcheck" ]; then
       echo "http_proxy=$http_proxy"
       echo "https_proxy=$https_proxy"
+      echo "tp_pac=$my_pac"   
    elif [ "X$1" = "Xset" ]; then
-      #export http_proxy=$http_proxy
-      #export https_proxy=$https_proxy
-      echo "tpproxy is not implemented on yet" >&2
+      #export http_proxy=$my_proxy
+      #export https_proxy=$my_proxy
+      #tp_pac=$my_pac
+      echo "tpproxy is not implemented on this site yet" >&2
    else
-      echo "http_proxy=$http_proxy" >&2
+      echo "http_proxy=$http_proxy"   >&2
       echo "https_proxy=$https_proxy" >&2
+      echo "tp_pac=$my_pac"           >&2
       echo "$usage" >&2
    fi
 
