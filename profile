@@ -97,6 +97,10 @@ myperltest () { cd "$TPSUP/lib/perltest"; }
 
 myps1 () { cd "$TPSUP/ps1"; }
 
+myrpm () {
+   cd "$TPSUP/../rpm"
+}
+
 mysite () {
    # for compatibility with corp settings
    cd "$SITESPEC/scripts"
@@ -208,9 +212,17 @@ pythonenv () {
       elif [ $expected_version = 2 ]; then
          export PATH="/cygdrive/c/Program Files/Python27:$PATH"
       fi
+   elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
+      # Visual Studio Code's terminal. we need 3.8 and above to run Solidity
+      if [ $expected_version = 3 ]; then
+         export PATH="/c/Program Files/Python3.10:$PATH"
+      elif [ $expected_version = 2 ]; then
+         export PATH="/c/Program Files/Python27:$PATH"
+      fi
    elif [[ $UNAME =~ Msys ]]; then
       if [ $expected_version = 3 ]; then
-         export PATH="/c/Program Files/Python37:$PATH"
+         #export PATH="/c/Program Files/Python37:$PATH"
+         export PATH="/c/Program Files/Python3.10:$PATH"
       elif [ $expected_version = 2 ]; then
          export PATH="/c/Program Files/Python27:$PATH"
       fi
