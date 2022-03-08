@@ -297,6 +297,21 @@ p3env () {
    pythonenv $@ 3 
 }
 
+nodeenv () {
+   # npm installation folder when running 
+   #    $ npm install --global yarn
+   # files go to
+   #       %USERPROFILE%\AppData\Roaming\npm\node_modules\yarn\bin\yarn.exe
+   #    C:\Users\william\AppData\Roaming\npm\node_modules\yarn\bin\yarn.exe
+   # tpsup/profile set WINHOME %USERPROFILE%
+   
+   if [[ $UNAME =~ Cygwin ]]; then
+      export PATH="/cygdrive/c/Program Files/nodjs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$PATH"
+   elif [[ $UNAME =~ Msys ]]; then
+      export PATH="/c/Program Files/nodejs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$PATH"
+   fi
+}
+
 selenium () {
    # set PATH for webdriver and browser
 
@@ -323,6 +338,8 @@ if [[ $UNAME =~ Linux ]]; then
 fi
 
 p3env -q  # this command takes about 2 seconds as it calls reduce()
+
+nodeenv
 
 # https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 # -a  Each variable or function that is created or modified is given the export attribute
