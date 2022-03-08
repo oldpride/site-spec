@@ -189,7 +189,7 @@ pythonenv () {
    while getopts q o;
    do
       case "$o" in
-         q) quiet=Y;;
+         q) quiet=Y; flag="-q";;
          *) echo "unknow switch. $usage">&2; return 1;;
       esac
    done
@@ -214,24 +214,28 @@ pythonenv () {
          export PATH="/usr/bin:$PATH"
       fi
    elif [[ $UNAME =~ Cygwin ]]; then
+      delpath $flag "Program Files/Python$expected_version"
       if [ $expected_version = 3 ]; then
-         export PATH="/cygdrive/c/Program Files/Python37:$PATH"
+         #export PATH="/cygdrive/c/Program Files/Python37:$PATH"
+         export PATH="/cygdrive/c/Program Files/Python3.10:/cygdrive/c/Program Files/Python3.10/scripts:$PATH"
       elif [ $expected_version = 2 ]; then
-         export PATH="/cygdrive/c/Program Files/Python27:$PATH"
+         export PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts:$PATH"
       fi
    elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
+      delpath $flag "Program Files/Python$expected_version"
       # Visual Studio Code's terminal. we need 3.8 and above to run Solidity
       if [ $expected_version = 3 ]; then
-         export PATH="/c/Program Files/Python3.10:$PATH"
+         export PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:$PATH"
       elif [ $expected_version = 2 ]; then
-         export PATH="/c/Program Files/Python27:$PATH"
+         export PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts:$PATH"
       fi
    elif [[ $UNAME =~ Msys ]]; then
+      delpath $flag "Program Files/Python$expected_version"
       if [ $expected_version = 3 ]; then
          #export PATH="/c/Program Files/Python37:$PATH"
-         export PATH="/c/Program Files/Python3.10:$PATH"
+         export PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:$PATH"
       elif [ $expected_version = 2 ]; then
-         export PATH="/c/Program Files/Python27:$PATH"
+         export PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts:$PATH"
       fi
 
       # GitBash buffers stdout by default. Disable the bufferring
