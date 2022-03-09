@@ -304,11 +304,16 @@ nodeenv () {
    #       %USERPROFILE%\AppData\Roaming\npm\node_modules\yarn\bin\yarn.exe
    #    C:\Users\william\AppData\Roaming\npm\node_modules\yarn\bin\yarn.exe
    # tpsup/profile set WINHOME %USERPROFILE%
+   #
+   #  yarn installation path - %LOCALAPPDATA%\yarn\bin
+   #     yarn info ganache-cli
+   #  files goes to
+   #     C:\Users\william\AppData\Local\Yarn\bin
    
    if [[ $UNAME =~ Cygwin ]]; then
-      export PATH="/cygdrive/c/Program Files/nodjs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$PATH"
+      export PATH="/cygdrive/c/Program Files/nodjs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$WINHOME/AppData/Local/Yarn/bin:$PATH"
    elif [[ $UNAME =~ Msys ]]; then
-      export PATH="/c/Program Files/nodejs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$PATH"
+      export PATH="/c/Program Files/nodejs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$WINHOME/AppData/Local/Yarn/bin:$PATH"
    fi
 }
 
