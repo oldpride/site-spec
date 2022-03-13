@@ -106,6 +106,8 @@ mysite () {
    cd "$SITESPEC/scripts"
 }
 
+mysol () { cd "$TPSUP/../solidity/courses"; }
+
 mytp () {
    # for compatibility with corp settings
    cd "$TPSUP/scripts"
