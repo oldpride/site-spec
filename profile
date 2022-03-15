@@ -276,15 +276,17 @@ pythonenv () {
    export PATH="$TPSUP/python3/scripts:$TPSUP/python3/examples:$PATH"
 
    if [[ $UNAME =~ Cygwin && $quiet = N ]]; then
-      echo "On Cygwin, use relative path or windows path. eg," 
-      echo "                                                         :w
-      ./tpcsv.py"
-      echo "   python                                                ./tpcsv.py"
-      echo "   C:/Users/$USERNAME/sitebase/github/tpsup/python3/scripts/tpcsv.py"
-      echo "Absolute path doesn't work, eg"
-      echo "                                                                      tpcsv.py"
-      echo "   python                                                             tpcsv.py"
-      echo "   /cygdrive/c/Users/$USERNAME/sitebase/github/tpsup/python3/lib/tpsup/tpcsv.py"
+   cat <<END
+On Cygwin, use relative path or windows path. eg,
+                                                         ./tpcsv.py
+   python                                                ./tpcsv.py
+   C:/Users/$USERNAME/sitebase/github/tpsup/python3/scripts/tpcsv.py
+
+Absolute path doesn't work, eg
+                                                                      tpcsv.py
+   python                                                             tpcsv.py
+   /cygdrive/c/Users/$USERNAME/sitebase/github/tpsup/python3/lib/tpsup/tpcsv.py
+END
    fi    
 
    # export the function
