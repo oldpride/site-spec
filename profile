@@ -149,6 +149,7 @@ usage:
    tpproxy is a bash function.
    tpproxy check
    tpproxy set
+   tpproxy unset
 "
    my_proxy="http://proxy.abc.net:8080"
    my_pac="http://pac.abc.net/"
@@ -156,14 +157,16 @@ usage:
    # tp_pac is only used by tpsup scripts, eg, tpchrome, tpchromium
 
    if [ "X$1" = "Xcheck" ]; then
-      echo "http_proxy=$http_proxy"
-      echo "https_proxy=$https_proxy"
-      echo "tp_pac=$my_pac"   
+           env |/bin/grep -i "^(http|tp_pac)"
    elif [ "X$1" = "Xset" ]; then
       #export http_proxy=$my_proxy
       #export https_proxy=$my_proxy
       #tp_pac=$my_pac
       echo "tpproxy is not implemented on this site yet" >&2
+   elif [ "X$1" = "Xunset" ]; then
+      unset http_proxy
+      unset https_proxy
+      unset tp_pac
    else
       echo "http_proxy=$http_proxy"   >&2
       echo "https_proxy=$https_proxy" >&2
