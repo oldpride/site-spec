@@ -62,6 +62,8 @@ mycpp () { cd "$TPSUP/../cpp/cookbook/src"; }
 
 mycmd () { cd "$TPSUP/cmd_exe"; }
 
+myfront () { cd "$TPSUP/frontend"; }
+
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
       cd /c/users/$USER/eclipse-workspace
