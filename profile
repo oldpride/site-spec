@@ -224,15 +224,15 @@ pythonenv () {
       delpath $flag "Program Files/Python$expected_version"
       if [ $expected_version = 3 ]; then
          #export PATH="/cygdrive/c/Program Files/Python37:$PATH"
-         export PATH="/cygdrive/c/Program Files/Python3.10:/cygdrive/c/Program Files/Python3.10/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python39/Scripts:$PATH"
+         export PATH="/cygdrive/c/Program Files/Python3.10:/cygdrive/c/Program Files/Python3.10/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts:$PATH"
       elif [ $expected_version = 2 ]; then
-         export PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python39/Scripts:$PATH"
+         export PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts:$PATH"
       fi
    elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
       delpath $flag "Program Files/Python$expected_version"
       # Visual Studio Code's terminal. we need 3.8 and above to run Solidity
       if [ $expected_version = 3 ]; then
-         export PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:$PATH"
+         export PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts:$PATH"
       elif [ $expected_version = 2 ]; then
          export PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts:$PATH"
       fi
@@ -240,7 +240,7 @@ pythonenv () {
       delpath $flag "Program Files/Python$expected_version"
       if [ $expected_version = 3 ]; then
          #export PATH="/c/Program Files/Python37:$PATH"
-         export PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:$PATH"
+         export PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts:$PATH"
       elif [ $expected_version = 2 ]; then
          export PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts:$PATH"
       fi
