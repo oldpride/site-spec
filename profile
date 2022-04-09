@@ -223,7 +223,6 @@ pythonenv () {
    elif [[ $UNAME =~ Cygwin ]]; then
       delpath $flag "Program Files/Python$expected_version"
       if [ $expected_version = 3 ]; then
-         #export PATH="/cygdrive/c/Program Files/Python37:$PATH"
          export PATH="/cygdrive/c/Program Files/Python3.10:/cygdrive/c/Program Files/Python3.10/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts:$PATH"
       elif [ $expected_version = 2 ]; then
          export PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts:$PATH"
@@ -269,7 +268,13 @@ pythonenv () {
       # therefore, we drop the front two parts: /cygdrive/c
       # Also Note: use semi-colon ; as separator
 
-      export PYTHONPATH="/Users/$USER/sitebase/github/tpsup/python$expected_version/lib;$SITEBASE/Windows/win10-python3.7/lib/site-packages:$PYTHONPATH"
+      export PYTHONPATH="/Users/$USER/sitebase/github/tpsup/python$expected_version/lib;$PYTHONPATH"
+
+      # if tpsup is installed under /home/$USER/sitebase/github/tpsup which is
+      #    C:\Program Files\cygwin64\home\$USER\sitebase\github\tpsup
+      # then
+      #    export PYTHONPATH="/Program Files/cygwin64/$SITEBASE/github/tpsup/python$expected_version/lib;$PYTHONPATH"
+      # note: use ';' as separator, not ':'
    else
       export PYTHONPATH="$TPSUP/python$expected_version/lib:$SITEBASE/Linux/linux3.10-python3.7/lib/site-packages:$PYTHONPATH:"
    fi
