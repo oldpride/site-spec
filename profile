@@ -103,6 +103,18 @@ myrpm () {
    cd "$TPSUP/../rpm"
 }
 
+mysamba () {
+   if [[ $UNAME =~ Linux ]]; then
+      cd ~/sambashare
+   elif [[ $UNAME =~ Cygwin ]]; then
+      cd ~/cygdrive/z
+   elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
+      cd /z
+   elif [[ $UNAME =~ Msys ]]; then
+      cd /z
+   fi
+}
+
 mysite () {
    # for compatibility with corp settings
    cd "$SITESPEC/scripts"
