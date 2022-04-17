@@ -107,7 +107,7 @@ mysamba () {
    if [[ $UNAME =~ Linux ]]; then
       cd ~/sambashare
    elif [[ $UNAME =~ Cygwin ]]; then
-      cd ~/cygdrive/z
+      cd /cygdrive/z
    elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
       cd /z
    elif [[ $UNAME =~ Msys ]]; then
