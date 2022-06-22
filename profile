@@ -1,5 +1,3 @@
-#!/bin/bash  # this line is purely to let the editor to activate BASH check
-
 # you can add this one liner to user's .profile or .bash_profile
 #   siteenv () { . ~/sitebase/github/site-spec/profile }
 
@@ -153,6 +151,11 @@ perltestenv () {
 }
 
 lca () { cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l; }
+
+sitevenv () {
+   # python venv
+   . $SITEBASE/venv/`uname`/bin/activate
+}
 
 vncserver () { /usr/bin/vncserver -geometry 1366x768 "$@"; }
 
