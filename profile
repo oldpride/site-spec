@@ -201,146 +201,6 @@ usage:
    # export https_proxy=http://host:port
 }
 
-pythonenv () {
-   local OPTIND OPTARG o quiet usage expected_version actual_version
-
-   usage="usage: pythonenv [-q] 2|3"
-
-   quiet=N
-
-   while getopts q o;
-   do
-      case "$o" in
-         q) quiet=Y; flag="-q";;
-         *) echo "unknow switch. $usage">&2; return 1;;
-      esac
-   done
-
-   shift $((OPTIND-1))
-
-   if [ $# -ne 1 ]; then
-      echo "wrong number of args: expected 1, actual $#"
-      echo $usage
-      return
-   fi
-
-   expected_version=$1
-
-   if [[ $UNAME =~ Linux ]]; then
-      # for linux, /usr/bin/python is versio 2, /usr/bin/python3 is version 3
-      # we make a symbolic of $TPSUP/python3/linux/bin/python from /usr/bin/python3
-      # so that our shell script can have a consistent "#!/usr/bin/env python"
-      if [ $expected_version = 3 ]; then
-         export PATH="$SITEBASE/python${expected_version}/Linux/bin:$PATH"
-      elif [ $expected_version = 2 ]; then
-         export PATH="/usr/bin:$PATH"
-      fi
-   elif [[ $UNAME =~ Cygwin ]]; then
-      delpath $flag "Program Files/Python$expected_version"
-      if [ $expected_version = 3 ]; then
-         export PATH="/cygdrive/c/Program Files/Python3.10:/cygdrive/c/Program Files/Python3.10/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts:$PATH"
-      elif [ $expected_version = 2 ]; then
-         export PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts:$PATH"
-      fi
-   elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
-      delpath $flag "Program Files/Python$expected_version"
-      # Visual Studio Code's terminal. we need 3.8 and above to run Solidity
-      if [ $expected_version = 3 ]; then
-         export PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts:$PATH"
-      elif [ $expected_version = 2 ]; then
-         export PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts:$PATH"
-      fi
-   elif [[ $UNAME =~ Msys ]]; then
-      delpath $flag "Program Files/Python$expected_version"
-      if [ $expected_version = 3 ]; then
-         #export PATH="/c/Program Files/Python37:$PATH"
-         export PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts:$PATH"
-      elif [ $expected_version = 2 ]; then
-         export PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts:$PATH"
-      fi
-
-      # GitBash buffers stdout by default. Disable the bufferring
-      # https://stackoverflow.com/questions/107705/disable-output-buffering
-      export PYTHONUNBUFFERED=Y
-   fi
-
-   binaries=python
-   if [ $expected_version = 3 ]; then
-      binaries="$binaries python3"
-   fi
-
-   found_binary=N
-   for binary in `echo $binaries`
-   do
-      python=`which $binary`
-      if [ $? != 0 ]; then
-         return;
-      fi
-   
-      actual_version=`"$python" --version 2>&1`
-      [ $quiet = Y ] || echo "'$python' is $actual_version"
-   
-      if [[ $actual_version =~ "Python $expected_version" ]]; then
-         found_binary=Y
-      else
-         echo "$python version is not $expected_version"
-      fi
-   done
-
-   if [ $found_binary = N ]; then
-      echo "ERROR: cannot find a python version $expected_version"
-      return
-   fi
-
-   if [[ $UNAME =~ Cygwin ]]; then
-      # cygwin converts PYTHONPATH's /cygdrive/c/users/$USERNAME/sitebase/github/... 
-      # into sys.path C:/cygdrive/c/users/$USERNAME/sitebase/github/... 
-      # therefore, we drop the front two parts: /cygdrive/c
-      # Also Note: use semi-colon ; as separator
-
-      export PYTHONPATH="/Users/$USER/sitebase/github/tpsup/python$expected_version/lib;$PYTHONPATH"
-
-      # if tpsup is installed under /home/$USER/sitebase/github/tpsup which is
-      #    C:\Program Files\cygwin64\home\$USER\sitebase\github\tpsup
-      # then
-      #    export PYTHONPATH="/Program Files/cygwin64/$SITEBASE/github/tpsup/python$expected_version/lib;$PYTHONPATH"
-      # note: use ';' as separator, not ':'
-   else
-      export PYTHONPATH="$TPSUP/python$expected_version/lib:$SITEBASE/Linux/linux3.10-python3.7/lib/site-packages:$PYTHONPATH:"
-   fi
-
-   reduce  # this takes about 2 seconds
-
-   [ $quiet = Y ] || echo PYTHONPATH=$PYTHONPATH
-
-   export PATH="$TPSUP/python3/scripts:$TPSUP/python3/examples:$PATH"
-
-   if [[ $UNAME =~ Cygwin && $quiet = N ]]; then
-   cat <<END
-On Cygwin, use relative path or windows path. eg,
-                                                         ./tpcsv.py
-   python                                                ./tpcsv.py
-   C:/Users/$USERNAME/sitebase/github/tpsup/python3/scripts/tpcsv.py
-
-Absolute path doesn't work, eg
-                                                                      tpcsv.py
-   python                                                             tpcsv.py
-   /cygdrive/c/Users/$USERNAME/sitebase/github/tpsup/python3/lib/tpsup/tpcsv.py
-END
-   fi    
-
-   # export the function
-   set -a
-}
-
-p2env () {
-   pythonenv $@ 2 
-}
-
-p3env () {
-   pythonenv $@ 3 
-}
-
 nodeenv () {
    # npm installation folder when running 
    #    $ npm install --global yarn
@@ -385,6 +245,40 @@ if [[ $UNAME =~ Linux ]]; then
       LD_LIBRARY_PATH=$SITEBASE/Linux/$Linux/usr/lib64 TERMINFO=/usr/share/terminfo $SITEBASE/Linux/$Linux/usr/bin/vim "$@"
    }
 fi
+
+if [[ $UNAME =~ Linux ]]; then
+   # for linux, /usr/bin/python is versio 2, /usr/bin/python3 is version 3
+   # we make a symbolic of $SITEBASE/python3/Linux/bin/python from /usr/bin/python3
+   # so that our shell script can have a consistent "#!/usr/bin/env python"
+   export TP_P3_PATH="$SITEBASE/python3/Linux/bin"
+   export TP_P2_PATH="/usr/bin"
+elif [[ $UNAME =~ Cygwin ]]; then
+   export TP_P3_PATH="/cygdrive/c/Program Files/Python3.10:/cygdrive/c/Program Files/Python3.10/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
+   export TP_P2_PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts"
+elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
+   export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
+   export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
+elif [[ $UNAME =~ Msys ]]; then
+   export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
+   export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
+
+   # GitBash buffers stdout by default. Disable the bufferring
+   # https://stackoverflow.com/questions/107705/disable-output-buffering
+   export PYTHONUNBUFFERED=Y
+fi
+
+p3env -q  # this command takes about 2 seconds as it calls reduce()
+
+nodeenv
+
+# https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+# -a  Each variable or function that is created or modified is given the export attribute
+#     and marked for export to the environment of subsequent commands "
+set -a
+set +a
+# -b  Cause the status of terminated background jobs to be reported immediately, rather than
+#     before printing the next primary prompt.
+set -b
 
 p3env -q  # this command takes about 2 seconds as it calls reduce()
 
