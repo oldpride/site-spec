@@ -255,14 +255,19 @@ if [[ $UNAME =~ Linux ]]; then
    export TP_P2_PATH="/usr/bin"
 elif [[ $UNAME =~ Cygwin ]]; then
    # for Cygwin and for Windows in general, there is no binary exe "python3". to make it working, make a link
-   # $ ln -s /cygdrive/c/Program\ Files/Python3.10/python $SITEBASE/python3/Cygwin/bin/python3
+   # do the following from Cygwin
+   #    $ ln -s /cygdrive/c/Program\ Files/Python3.10/python $SITEBASE/python3/Cygwin/bin/python3
    export TP_P3_PATH="/cygdrive/c/Program Files/Python3.10:$SITEBASE/python3/Cygwin/bin:/cygdrive/c/Program Files/Python3.10/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts"
 elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
    export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
 elif [[ $UNAME =~ MINGW ]]; then
-   export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
+   # this is gitbash
+   # for gitbash and for Windows in general, there is no binary exe "python3". to make it working, make a link
+   # do the following from gitbash
+   #    ln -s "/c/Program Files/Python3.10/python" $SITEBASE/python3/MINGW/bin/python3
+   export TP_P3_PATH="/c/Program Files/Python3.10:$SITEBASE/python3/MINGW/bin:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
 
    # GitBash buffers stdout by default. Disable the bufferring
