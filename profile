@@ -231,7 +231,7 @@ pythonenv () {
       # we make a symbolic of $TPSUP/python3/linux/bin/python from /usr/bin/python3
       # so that our shell script can have a consistent "#!/usr/bin/env python"
       if [ $expected_version = 3 ]; then
-         export PATH="$SITESPEC/python${expected_version}/Linux/bin:$PATH"
+         export PATH="$SITEBASE/python${expected_version}/Linux/bin:$PATH"
       elif [ $expected_version = 2 ]; then
          export PATH="/usr/bin:$PATH"
       fi
