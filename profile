@@ -231,7 +231,7 @@ pythonenv () {
       # we make a symbolic of $TPSUP/python3/linux/bin/python from /usr/bin/python3
       # so that our shell script can have a consistent "#!/usr/bin/env python"
       if [ $expected_version = 3 ]; then
-         export PATH="$TPSUP/python${expected_version}/linux/bin:$PATH"
+         export PATH="$SITESPEC/python${expected_version}/Linux/bin:$PATH"
       elif [ $expected_version = 2 ]; then
          export PATH="/usr/bin:$PATH"
       fi
@@ -264,16 +264,31 @@ pythonenv () {
       export PYTHONUNBUFFERED=Y
    fi
 
-   python=`which python`
-   if [ $? != 0 ]; then
-      return;
+   binaries=python
+   if [ $expected_version = 3 ]; then
+      binaries="$binaries python3"
    fi
 
-   actual_version=`"$python" --version 2>&1`
-   [ $quiet = Y ] || echo "'$python' is $actual_version"
+   found_binary=N
+   for binary in `echo $binaries`
+   do
+      python=`which $binary`
+      if [ $? != 0 ]; then
+         return;
+      fi
+   
+      actual_version=`"$python" --version 2>&1`
+      [ $quiet = Y ] || echo "'$python' is $actual_version"
+   
+      if [[ $actual_version =~ "Python $expected_version" ]]; then
+         found_binary=Y
+      else
+         echo "$python version is not $expected_version"
+      fi
+   done
 
-   if ! [[ $actual_version =~ "Python $expected_version" ]]; then
-      echo "cannot find python version $expected_version in $PATH"
+   if [ $found_binary = N ]; then
+      echo "ERROR: cannot find a python version $expected_version"
       return
    fi
 
