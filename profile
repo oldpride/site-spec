@@ -293,4 +293,4 @@ set -b
 
 # todo: should I export (set -a; set -b) first or reduce first?
 unset TP_REDUCE_DISABLE
-reduce
+reduce all
