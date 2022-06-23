@@ -153,8 +153,9 @@ perltestenv () {
 lca () { cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l; }
 
 sitevenv () {
+   export SITEVENV="$SITEBASE/python3/venv/`uname`/tpsup"
    # python venv
-   . $SITEBASE/venv/`uname`/bin/activate
+   . $SITEVENV/bin/activate
 }
 
 vncserver () { /usr/bin/vncserver -geometry 1366x768 "$@"; }
