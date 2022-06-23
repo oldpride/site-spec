@@ -86,7 +86,7 @@ mycad () { cd "$TPSUP/../freecad"; }
 
 myduino () { cd "$TPSUP/../arduino"; }
 
-testreduce () { echo "test reduce"; reduce;}
+testreduce () { echo "test reduce"; reduce all;}
 
 myperllib () {
    # for compatibility with corp settings
@@ -229,10 +229,10 @@ selenium () {
 
    if [[ $UNAME =~ Cygwin ]]; then
       export PATH=$PATH:'/cygdrive/C/Program Files (x86)/Google/Chrome/Application':/cygdrive/C/users/$USER
-      reduce
+      reduce all
    elif [[ $UNAME =~ Msys ]]; then
      export PATH=$PATH:'/C/Program Files (x86)/Google/Chrome/Application':~
-      reduce
+      reduce all
    fi
 }
 
