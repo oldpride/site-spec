@@ -236,7 +236,7 @@ selenium () {
    fi
 }
 
-TP_NO_REDUCE=Y
+TP_REDUCE_DISABLE=Y
 
 if [[ $UNAME =~ Linux ]]; then
    sitevim () {
@@ -282,23 +282,15 @@ p3env -q  # this command takes about 2 seconds as it calls reduce()
 
 nodeenv
 
-unset TP_NO_REDUCE
+# https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+# -a  Each variable or function that is created or modified is given the export attribute
+#     and marked for export to the environment of subsequent commands "
+set -a
+set +a
+# -b  Cause the status of terminated background jobs to be reported immediately, rather than
+#     before printing the next primary prompt.
+set -b
+
+# todo: should I export (set -a; set -b) first or reduce first?
+unset TP_REDUCE_DISABLE
 reduce
-
-# https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
-# -a  Each variable or function that is created or modified is given the export attribute
-#     and marked for export to the environment of subsequent commands "
-set -a
-set +a
-# -b  Cause the status of terminated background jobs to be reported immediately, rather than
-#     before printing the next primary prompt.
-set -b
-
-# https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
-# -a  Each variable or function that is created or modified is given the export attribute
-#     and marked for export to the environment of subsequent commands "
-set -a
-set +a
-# -b  Cause the status of terminated background jobs to be reported immediately, rather than
-#     before printing the next primary prompt.
-set -b
