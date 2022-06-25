@@ -153,7 +153,6 @@ perltestenv () {
 lca () { cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l; }
 
 sitevenv () {
-   export SITEVENV="$SITEBASE/python3/venv/`uname`/tpsup"
    # python venv
    . $SITEVENV/bin/activate
 }
@@ -256,15 +255,21 @@ if [[ $UNAME =~ Linux ]]; then
    # $ ln -s /usr/bin/python3 $SITEBASE/python3/Linux/bin/python3
    export TP_P3_PATH="$SITEBASE/python3/Linux/bin"
    export TP_P2_PATH="/usr/bin"
+
+   export SITEVENV="$SITEBASE/python3/venv/Linux/sitevenv"
 elif [[ $UNAME =~ Cygwin ]]; then
    # for Cygwin and for Windows in general, there is no binary exe "python3". to make it working, make a link
    # do the following from Cygwin
    #    $ ln -s /cygdrive/c/Program\ Files/Python3.10/python $SITEBASE/python3/Cygwin/bin/python3
    export TP_P3_PATH="/cygdrive/c/Program Files/Python3.10:$SITEBASE/python3/Cygwin/bin:/cygdrive/c/Program Files/Python3.10/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts"
+
+   export SITEVENV="$SITEBASE/python3/venv/Windows/sitevenv"
 elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
    export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
+
+   export SITEVENV="$SITEBASE/python3/venv/Windows/sitevenv"
 elif [[ $UNAME =~ MINGW ]]; then
    # this is gitbash
    # for gitbash and for Windows in general, there is no binary exe "python3". to make it working, make a link
@@ -276,6 +281,8 @@ elif [[ $UNAME =~ MINGW ]]; then
    # GitBash buffers stdout by default. Disable the bufferring
    # https://stackoverflow.com/questions/107705/disable-output-buffering
    export PYTHONUNBUFFERED=Y
+
+   export SITEVENV="$SITEBASE/python3/venv/Windows/sitevenv"
 fi
 
 p3env -q  # this command takes about 2 seconds as it calls reduce()
