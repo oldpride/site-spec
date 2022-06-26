@@ -152,11 +152,6 @@ perltestenv () {
 
 lca () { cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l; }
 
-sitevenv () {
-   # python venv
-   . $SITEVENV/bin/activate
-}
-
 vncserver () { /usr/bin/vncserver -geometry 1366x768 "$@"; }
 
 tpproxy () {
