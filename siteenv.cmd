@@ -17,9 +17,9 @@ set "SITEBASE=C:\users\%username%\sitebase"
 # use call so that control will return to the calling batch file.
 call "%SITEBASE%\github\tpsup\cmd_exe\tpsup"
 
+rem the following will be used by tpsup/cmd_exe/p3env.exe
 set "TP_P3_PATH=C:\Program Files\Python3.10;C:\Program Files\Python3.10\Scripts"
 set "TP_P3_PATHPATH=%SITEBASE%\Windows\Win10-Python3.7\lib\site-packages"
-
-rem p3env
+rem call p3env
 
 
