@@ -13,8 +13,13 @@ rem    symbolic link created for siteenv.cmd <<===>> sitebase\github\tpsup\env\s
 
 rem don't use setx. setx will permanently change the setting
 set "SITEBASE=C:\users\%username%\sitebase"
-call %SITEBASE%\github\tpsup\cmd_exe\tpsup
 
-call addpath PYTHONPATH "%SITEBASE%\Windows\Win10-Python3.7\lib\site-packages"
+# use call so that control will return to the calling batch file.
+call "%SITEBASE%\github\tpsup\cmd_exe\tpsup"
+
+set "TP_P3_PATH=C:\Program Files\Python3.10;C:\Program Files\Python3.10\Scripts"
+set "TP_P3_PATHPATH=%SITEBASE%\Windows\Win10-Python3.7\lib\site-packages"
+
+rem p3env
 
 
