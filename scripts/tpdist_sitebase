@@ -45,9 +45,10 @@ usage:
 
    -a app_env                           support app_env: 
 
-                                        default:    $default_remote_dirs
-                                        cygwin:     $cygwin_remote_dirs
-                                        linuxwhole: $wholelinux_remote_dirs
+                                        default:      $default_remote_dirs
+                                        cygwin:       $cygwin_remote_dirs
+                                        windows_venv: $windows_venv_remote_dirs
+                                        linuxwhole:   $wholelinux_remote_dirs
 
 examples:
    - from linux host
