@@ -19,7 +19,7 @@ rem don't use setx. setx will permanently change the setting
 set "SITEBASE=C:\users\%username%\sitebase"
 set "SITESPEC=C:\users\%username%\sitebase\github\site-spec"
 
-# use call so that control will return to the calling batch file.
+rem use call so that control will return to the calling batch file.
 call "%SITEBASE%\github\tpsup\cmd_exe\tpsup"
 
 rem the following will be used by tpsup/cmd_exe/p3env.exe
