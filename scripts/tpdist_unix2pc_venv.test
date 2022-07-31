@@ -2,25 +2,13 @@
 
 Linux=`uname -a |awk '{print $3}'| cut -d. -f1,2`
 
-
-#default_remote_host=LAPTOP-4DDGKLFF.fios-router.home
-#default_remote_port=5555
-#default_remote_base=/cygdrive/c/users/william/sitebase
-#default_remote_dirs="github lib/perl"
 default_remote_host=linux1.fios-router.home
 default_remote_port=5555
-default_remote_base=/home/tian/sitebase
-default_remote_dirs="github lib/perl"
-
-cygwin_remote_dirs="github lib/perl"
-wholelinux_remote_dirs="github lib/perl msodbcsql-17 Linux/$Linux/perl Linux/$Linux/usr Linux/$Linux/anaconda3"
-windows_venv_remote_dirs="python3/venv/Windows"
-
+default_remote_base=$SITEBASE/python3/venv/Windows
 
 remote_host=$default_remote_host
 remote_port=$default_remote_port
 remote_base=$default_remote_base
-remote_dirs=$default_remote_dirs
 
 prog=`basename $0`
 
@@ -32,48 +20,32 @@ usage:
    $prog check
    $prog sync
 
-   copy remote sitebase to local
+   copy venv from linux (centralized place) to pc. 
+   we run this script from pc to pull.
 
    -s remote_server:remote_host         default $default_remote_host:$default_remote_port
 
    -b remote_base                       default $default_remote_base
 
-   -d remote_dirs                       default $default_remote_dirs
-                                        because other folders are huge
-
    -v                                   verbose
 
-   -a app_env                           support app_env: 
-
-                                        default:    $default_remote_dirs
-                                        cygwin:     $cygwin_remote_dirs
-                                        linuxwhole: $wholelinux_remote_dirs
-
 examples:
-   - from linux host
-   mkdir ~/testbase
-   cd ~/testbase
-   $prog check .
-    
-   - from cygwin/gitbash host
-   mkdir ~/testbase
-   cd ~/testbase
-   $prog -a cygwin check .
+
+   $prog check
+   $prog sync
    
 
 EOF
    exit 1
 }
 
-while getopts s:b:d:a:v o;
+while getopts s:b:v o;
 do
    case "$o" in
       s) remote_host=`echo $OPTARG|cut -d: -f1`
          remote_port=`echo $OPTARG|cut -d: -f2`
          ;;
-      a) app=$OPTARG;;
       b) remote_base=$OPTARG;;
-      d) remote_dirs=$OPTARG;;
       v) set -x;;
       *) echo "unknown switch='$o'"; usage;;
    esac
@@ -160,8 +132,6 @@ if [ "X$app" != "X" ]; then
       remote_dirs=$cygwin_remote_dirs
    elif [ "X$app" = "Xwholelinux" ]; then
       remote_dirs=$wholelinux_remote_dirs
-   elif [ "X$app" = "Xwindows_venv" ]; then
-      remote_dirs=$windows_venv_remote_dirs
    else 
       echo "ERROR: unknown app env='$app'"
       usage
