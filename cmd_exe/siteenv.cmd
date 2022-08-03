@@ -27,4 +27,6 @@ set "TP_P3_PATH=C:\Program Files\Python3.10;C:\Program Files\Python3.10\Scripts"
 set "TP_P3_PATHPATH=%SITEBASE%\Windows\Win10-Python3.7\lib\site-packages"
 rem call p3env
 
+set "SITEVENV=%SITEBASE%\python3\venv\Windows\win10-python3.10"
+
 addpath PATH "%SITESPEC%\cmd_exe"
