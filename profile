@@ -60,6 +60,8 @@ mycpp () { cd "$TPSUP/../cpp/cookbook/src"; }
 
 mycmd () { cd "$TPSUP/cmd_exe"; }
 
+myvbs () { cd "$TPSUP/vbs"; }
+
 myfront () { cd "$TPSUP/../frontend"; }
 
 myjava () {
