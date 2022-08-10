@@ -20,7 +20,7 @@ set "SITEBASE=C:\users\%username%\sitebase"
 set "SITESPEC=C:\users\%username%\sitebase\github\site-spec"
 
 rem use call so that control will return to the calling batch file.
-call "%SITEBASE%\github\tpsup\cmd_exe\tpsup"
+call "%SITEBASE%\github\tpsup\cmd_exe\tpsup.cmd"
 
 rem the following will be used by tpsup/cmd_exe/p3env.exe
 set "TP_P3_PATH=C:\Program Files\Python3.10;C:\Program Files\Python3.10\Scripts"
@@ -29,4 +29,3 @@ rem call p3env
 
 set "SITEVENV=%SITEBASE%\python3\venv\Windows\win10-python3.10"
 
-addpath PATH "%SITESPEC%\cmd_exe"
