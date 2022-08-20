@@ -16,8 +16,18 @@ rem    C:\Users\william>mklink siteenv.cmd sitebase\github\site-spec\siteenv.cmd
 rem    symbolic link created for siteenv.cmd <<===>> sitebase\github\tpsup\env\siteenv.cmd
 
 rem don't use setx. setx will permanently change the setting
-set "SITEBASE=C:\users\%username%\sitebase"
-set "SITESPEC=C:\users\%username%\sitebase\github\site-spec"
+rem set "SITESPEC=C:\users\%username%\sitebase\github\site-spec"
+rem set "SITEBASE=C:\users\%username%\sitebase"
+set "SITECMD=%~dp0"
+echo "SITECMD=%SITECMD%"
+
+call :REL2ABS "%SITECMD%\.."
+set "SITESPEC=%RETVAL%"
+echo "SITESPEC=%SITESPEC%"
+
+call :REL2ABS "%SITESPEC%\..\.."
+set "SITEBASE=%RETVAL%"
+echo "SITEBASE+%SITEBASE%"
 
 rem use call so that control will return to the calling batch file.
 call "%SITEBASE%\github\tpsup\cmd_exe\tpsup.cmd"
@@ -29,3 +39,10 @@ rem call p3env
 
 set "SITEVENV=%SITEBASE%\python3\venv\Windows\win10-python3.10"
 
+:: ========== FUNCTIONS ==========
+EXIT /B
+
+:: https://stackoverflow.com/questions/1645843/resolve-absolute-path-from-relative-path-and-or-file-name
+:REL2ABS
+  SET RETVAL=%~f1
+  EXIT /B
