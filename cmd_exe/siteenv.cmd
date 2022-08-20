@@ -27,7 +27,7 @@ echo "SITESPEC=%SITESPEC%"
 
 call :REL2ABS "%SITESPEC%\..\.."
 set "SITEBASE=%RETVAL%"
-echo "SITEBASE+%SITEBASE%"
+echo "SITEBASE=%SITEBASE%"
 
 rem use call so that control will return to the calling batch file.
 call "%SITEBASE%\github\tpsup\cmd_exe\tpsup.cmd"

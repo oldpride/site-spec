@@ -7,5 +7,6 @@ call "%SITEBASE%github\site-spec\cmd_exe\siteenv.cmd"
 call p3env
 call svenv
 
-pyslnm_test_input auto s=henry
+call pyslnm_test_input auto s=henry
 
+call venv
