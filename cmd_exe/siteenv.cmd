@@ -19,15 +19,15 @@ rem don't use setx. setx will permanently change the setting
 rem set "SITESPEC=C:\users\%username%\sitebase\github\site-spec"
 rem set "SITEBASE=C:\users\%username%\sitebase"
 set "SITECMD=%~dp0"
-echo "SITECMD=%SITECMD%"
+echo SITECMD=%SITECMD%
 
 call :REL2ABS "%SITECMD%\.."
 set "SITESPEC=%RETVAL%"
-echo "SITESPEC=%SITESPEC%"
+echo SITESPEC=%SITESPEC%
 
 call :REL2ABS "%SITESPEC%\..\.."
 set "SITEBASE=%RETVAL%"
-echo "SITEBASE=%SITEBASE%"
+echo SITEBASE=%SITEBASE%
 
 rem use call so that control will return to the calling batch file.
 call "%SITEBASE%\github\tpsup\cmd_exe\tpsup.cmd"
