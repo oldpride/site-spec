@@ -62,6 +62,8 @@ mycmd () { cd "$TPSUP/cmd_exe"; }
 
 myvbs () { cd "$TPSUP/vbs"; }
 
+mydice () { cd "$SITEBASE/github/dice/scripts"; }
+
 myfront () { cd "$TPSUP/../frontend"; }
 
 myjava () {
