@@ -12,25 +12,37 @@ if [ "X$USERNAME" = "X" ]; then
    fi
 fi
 
-if [ "X$BASH_SOURCE" != "X" ]; then
-   # example:
-   #    BASH_SOURCE is /home/tian/sitebase/github/site-spec/profile 
-   #    SITEBASE    is /home/tian/sitebase
-   #    SITESPEC    is /home/tian/sitebase/github/site-spec
-   #    TPSUP       is /home/tian/sitebase/github/tpsup
-   export SITEBASE=$(cd "`dirname \"$BASH_SOURCE\"`/../..";        pwd -P) || return
-   export SITESPEC=$SITEBASE/github/site-spec
-   export    TPSUP=$SITEBASE/github/tpsup
-else
-   if ! [[ "$0" =~ bash ]]; then
-      echo "Run bash first ... Env is not set !!!" >&2
-      return
+get_bash_source () {
+   TP_BASH_SOURCE_FOUND=N
+   unset TP_BASH_SOURCE_DIR
+   unset TP_BASH_SOURCE_FILE
+
+   if [ "X$BASH_SOURCE" != "X" ]; then
+      TP_BASH_SOURCE_DIR=` dirname  "$BASH_SOURCE"`
+      TP_BASH_SOURCE_FILE=`basename "$BASH_SOURCE"`
+      TP_BASH_SOURCE_FOUND=Y
+      return 0
    else
-      echo "You used wrong bash (check version). please exit and find a newer version instead !!!" >&2
-      echo " Or you can export BASH_SOURCE=/home/$USERNAME/sitebase/github/tpsup/profile or something similar" >&2
-      return
+      if ! [[ "$0" =~ bash ]]; then
+         echo "Run bash first ... Env is not set !!!" >&2
+      else
+         echo "You used wrong bash (check version). please exit and find a newer version instead !!!" >&2
+         echo " Or you can export BASH_SOURCE=this_file" >&2
+      fi
+      return 1
    fi
-fi
+}
+
+get_bash_source || return
+# [ $TP_BASH_SOURCE_FOUND = Y ] || return
+# example:
+#    BASH_SOURCE is /home/tian/sitebase/github/site-spec/profile 
+#    SITEBASE    is /home/tian/sitebase
+#    SITESPEC    is /home/tian/sitebase/github/site-spec
+#    TPSUP       is /home/tian/sitebase/github/tpsup
+export SITEBASE=$(cd "$TP_BASH_SOURCE_DIR/../.."; pwd -P) || return
+export SITESPEC=$SITEBASE/github/site-spec
+export    TPSUP=$SITEBASE/github/tpsup
 
 export PATH=$PATH:$SITEBASE/github/site-spec/scripts:/opt/mssql-tools/bin
 
@@ -47,25 +59,22 @@ siteenv () {
 
 . "$TPSUP"/profile
 
-kdbnotes () { cd "$TPSUP/../kdb/notes"; }
+testreduce () { echo "test reduce"; reduce all;}
 
+kdbnotes () { cd "$TPSUP/../kdb/notes"; }
+kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 myandroid () {
    export ANDROID_HOME=${HOME}/Android/Sdk
    export PATH="${ANDROID_HOME}/tools:${PATH}"
    export PATH="${ANDROID_HOME}/emulator:${PATH}"
    export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
 }
-
+mycad () { cd "$TPSUP/../freecad"; }
 mycpp () { cd "$TPSUP/../cpp/cookbook/src"; }
-
-mycmd () { cd "$TPSUP/cmd_exe"; }
-
+myduino () { cd "$TPSUP/../arduino"; }
 myvbs () { cd "$TPSUP/vbs"; }
-
 mydice () { cd "$SITEBASE/github/dice/scripts"; }
-
 myfront () { cd "$TPSUP/../frontend"; }
-
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
       cd /c/users/$USER/eclipse-workspace
@@ -77,34 +86,13 @@ myjava () {
       echo "UNAME='$UNAME' is not supported"
    fi
 }
-
 myjoomla () { cd "$TPSUP/../joomla/php"; }
-
-kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
-
 mykivy () { cd "$TPSUP/../kivy"; }
-
 mynotes () { cd "$TPSUP/../notes"; }
-
-mycad () { cd "$TPSUP/../freecad"; }
-
-myduino () { cd "$TPSUP/../arduino"; }
-
-testreduce () { echo "test reduce"; reduce all;}
-
-myperllib () {
-   # for compatibility with corp settings
-   cd "$TPSUP/lib/perl/TPSUP"
-}
-
+myperllib () { cd "$TPSUP/lib/perl/TPSUP"; }
 myperltest () { cd "$TPSUP/lib/perltest"; }
-
-myps1 () { cd "$TPSUP/ps1"; }
-
-myrpm () {
-   cd "$TPSUP/../rpm"
-}
-
+mypkg () { cd "$SITESPEC/cfg/pkgs"; }
+myrpm () { cd "$TPSUP/../rpm"; }
 mysamba () {
    if [[ $UNAME =~ Linux ]]; then
       cd ~/sambashare
@@ -117,17 +105,7 @@ mysamba () {
    fi
 }
 
-mysite () {
-   # for compatibility with corp settings
-   cd "$SITESPEC/scripts"
-}
-
 mysol () { cd "$TPSUP/../solidity/courses"; }
-
-mytp () {
-   # for compatibility with corp settings
-   cd "$TPSUP/scripts"
-}
 
 # automatically cd or mkdir to a latest sub-folder
 myrel () {
@@ -217,20 +195,6 @@ nodeenv () {
       export PATH="/cygdrive/c/Program Files/nodjs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$WINHOME/AppData/Local/Yarn/bin:$PATH"
    elif [[ $UNAME =~ Msys ]]; then
       export PATH="/c/Program Files/nodejs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$WINHOME/AppData/Local/Yarn/bin:$PATH"
-   fi
-}
-
-selenium () {
-   # set PATH for webdriver and browser
-
-   # linux: /usr/bin/chromedriver, /usr/bin/chromium-browser
-
-   if [[ $UNAME =~ Cygwin ]]; then
-      export PATH=$PATH:'/cygdrive/C/Program Files (x86)/Google/Chrome/Application':/cygdrive/C/users/$USER
-      reduce all
-   elif [[ $UNAME =~ Msys ]]; then
-     export PATH=$PATH:'/C/Program Files (x86)/Google/Chrome/Application':~
-      reduce all
    fi
 }
 
