@@ -18,8 +18,10 @@ get_bash_source () {
    unset TP_BASH_SOURCE_FILE
 
    if [ "X$BASH_SOURCE" != "X" ]; then
-      TP_BASH_SOURCE_DIR=` dirname  "$BASH_SOURCE"`
+      TP_BASH_SOURCE_DIR=`  dirname "$BASH_SOURCE"`
       TP_BASH_SOURCE_FILE=`basename "$BASH_SOURCE"`
+
+      TP_BASH_SOURCE_DIR=$(cd "$TP_BASH_SOURCE_DIR"; pwd -P)
       TP_BASH_SOURCE_FOUND=Y
       return 0
    else
@@ -33,8 +35,8 @@ get_bash_source () {
    fi
 }
 
-get_bash_source || return
-# [ $TP_BASH_SOURCE_FOUND = Y ] || return
+get_bash_source || return $?
+# [ $TP_BASH_SOURCE_FOUND = Y ] || return $?
 # example:
 #    BASH_SOURCE is /home/tian/sitebase/github/site-spec/profile 
 #    SITEBASE    is /home/tian/sitebase

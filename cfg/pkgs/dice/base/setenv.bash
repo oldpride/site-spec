@@ -19,4 +19,13 @@ fi
 export PATH="$SITEBASE/github/dice/scripts:$PATH"
 cd "$SITEBASE/github/dice/scripts"
 p3env
+
 svenv
+echo ""
+echo "After entering venv"
+echo ""
+echo PATH=$PATH
+echo ""
+echo PYTHON is
+which python
+python --version
