@@ -1,4 +1,19 @@
-dice proj
+install this tree as .../dicepkg,  eg, $HOME/dicepkg
+
+create a self-contained venv under $HOME/dicevenv
+   python -m venv $HOME/dicevenv
+   source $HOME/dicevenv/bin/activate
+
+   pip install --upgrade pip
+   pip install bs4 lxml requests selenium urllib3
+
+   deactivate
+
+download chromedriver and save it to $HOME/dicevenv/bin
+
+create a cfg folder $HOME/dicecfg, store the following files
+   users.csv
+   .env
 
 set up env
    from windows cmd.exe
@@ -10,9 +25,14 @@ set up env
    this takes you into venv. run 'dvenv' to exit venv
 
 apply jobs
-   apply path1/users.json path2/env.csv 
-   example: apply users.json .env
+   apply $HOME/dicecfg/users.csv $HOME/dicecfg/.env 
 
-kill leftover chromedriver after each failed run
-   from cmd.exe
-      pkill chromedriver
+output is saved 
+   $HOME/dicebase
+
+kill leftover chromedriver after each failed run, from windows cmd or linux bash.
+   pkill chromedriver
+
+to add a new user, modify two files
+   $HOME/users.csv
+   $HOME/.env
