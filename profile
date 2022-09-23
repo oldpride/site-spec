@@ -72,7 +72,7 @@ myandroid () {
    export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
 }
 mycad () { cd "$TPSUP/../freecad"; }
-mycpp () { cd "$TPSUP/../cpp/cookbook/src"; }
+mycpp () { cd "$TPSUP/../cpp"; }
 myduino () { cd "$TPSUP/../arduino"; }
 myvbs () { cd "$TPSUP/vbs"; }
 mydice () { cd "$SITEBASE/github/dice/scripts"; }
