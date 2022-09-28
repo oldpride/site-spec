@@ -15,7 +15,14 @@ else
    fi
 fi
 
+echo SITEBASE=$SITEBASE
+echo SITESPEC=$SITESPEC
+echo    TPSUP=$TPSUP
+
 . $SITESPEC/profile
+
+echo SITEVENV=$SITEVENV
+
 export PATH="$SITEBASE/github/dice/scripts:$PATH"
 cd "$SITEBASE/github/dice/scripts"
 p3env

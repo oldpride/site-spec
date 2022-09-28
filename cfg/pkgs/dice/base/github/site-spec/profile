@@ -59,6 +59,8 @@ siteenv () {
    . "$SITEBASE"/github/site-spec/profile
 }
 
+export UNAME=`uname -a`
+
 if [[ $UNAME =~ Linux ]]; then
    sitevim () {
       # if the site has no full-featured vim, install it and then turn on this function
