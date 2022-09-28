@@ -30,9 +30,29 @@ apply jobs
 output is saved 
    $HOME/dicebase
 
-kill leftover chromedriver after each failed run, from windows cmd or linux bash.
-   pkill chromedriver
+kill leftover chrome and chromedriver after each failed run, from windows cmd or linux bash.
+   pkill chrome
 
 to add a new user, modify two files
-   $HOME/users.csv
-   $HOME/.env
+   $HOME/dicecfg/users.csv
+   $HOME/dicecfg/.env
+
+to run on every weekday
+   crontab -e
+   # GMT
+   13 17 * * 1,2,3,4,5 bash -c ". $HOME/dicepkg/setenv.bash; pkill chrome; apply -headless $HOME/dicecfg/users.csv $HOME/dicecfg/.env" >/tmp/apply_`date +\%w`_1.log 2>&1
+   13 19 * * 1,2,3,4,5 bash -c ". $HOME/dicepkg/setenv.bash; pkill chrome; apply -headless $HOME/dicecfg/users.csv $HOME/dicecfg/.env" >/tmp/apply_`date +\%w`_2.log 2>&1
+   13 21 * * 1,2,3,4,5 bash -c ". $HOME/dicepkg/setenv.bash; pkill chrome; apply -headless $HOME/dicecfg/users.csv $HOME/dicecfg/.env" >/tmp/apply_`date +\%w`_3.log 2>&1
+
+find application results
+   less $HOME/dicebase/$email/applied_summary.txt
+
+directory structure
+   $HOME/dicebase     application results
+   $HOME/dicecfg      application configuration
+   $HOME/dicepkg      python code
+   $HOME/dicevenv     python venv
+
+   $HOME/dicecfg/users.csv    user file
+   $HOME/dicecfg/.env         pass file
+   /tmp/apply*.log            log  files
