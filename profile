@@ -126,7 +126,7 @@ mycpp () { cd "$TPSUP/../cpp"; }
 myduino () { cd "$TPSUP/../arduino"; }
 myvbs () { cd "$TPSUP/vbs"; }
 mydice () { cd "$SITEBASE/github/dice/scripts"; }
-mydjango () { cd "$SITEBASE/github/django/blog"; }
+mydjango () { cd "$SITEBASE/github/django_tutorial"; }
 myfront () { cd "$TPSUP/../frontend"; }
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
