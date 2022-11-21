@@ -142,6 +142,7 @@ myjava () {
 myjoomla () { cd "$TPSUP/../joomla/php"; }
 mykivy () { cd "$TPSUP/../kivy"; }
 mynotes () { cd "$TPSUP/../notes"; }
+myns () { cd "$SITEBASE/github/nativescript"; }
 myperllib () { cd "$TPSUP/lib/perl/TPSUP"; }
 myperltest () { cd "$TPSUP/lib/perltest"; }
 mypkg () { cd "$SITESPEC/cfg/pkgs"; }
