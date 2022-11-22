@@ -111,6 +111,16 @@ fi
 
 . "$TPSUP"/profile
 
+java11 () {
+   if [[ $UNAME =~ Linux ]]; then
+      echo "not supported yet"
+   elif [[ $UNAME =~ Cygwin ]]; then
+      export JAVA_HOME="/cygdrive/c/Program Files/Java/jdk-11.0.16.1"
+   elif [[ $UNAME =~ MINGW ]]; then
+      export JAVA_HOME="/c/Program Files/Java/jdk-11.0.16.1"
+   fi
+}
+
 testreduce () { echo "test reduce"; reduce all;}
 
 kdbnotes () { cd "$TPSUP/../kdb/notes"; }
