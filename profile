@@ -81,6 +81,7 @@ if [[ $UNAME =~ Linux ]]; then
    export TP_P2_PATH="/usr/bin"
 
    export SITEVENV="$SITEBASE/python3/venv/Linux/Linux4.15-python3.8"
+   export ANDROID_HOME=${HOME}/Android/Sdk
 elif [[ $UNAME =~ Cygwin ]]; then
    # for Cygwin and for Windows in general, there is no binary exe "python3". to make it working, make a link
    # do the following from Cygwin
@@ -89,11 +90,13 @@ elif [[ $UNAME =~ Cygwin ]]; then
    export TP_P2_PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts"
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
+   export ANDROID_HOME="/cygdrive/c/Users/william/AppData/Local/Android/Sdk"
 elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
    export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
+   export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
 elif [[ $UNAME =~ MINGW ]]; then
    # this is gitbash
    # for gitbash and for Windows in general, there is no binary exe "python3". to make it working, make a link
@@ -107,6 +110,7 @@ elif [[ $UNAME =~ MINGW ]]; then
    export PYTHONUNBUFFERED=Y
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
+   export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
 fi
 
 . "$TPSUP"/profile
@@ -125,12 +129,18 @@ testreduce () { echo "test reduce"; reduce all;}
 
 kdbnotes () { cd "$TPSUP/../kdb/notes"; }
 kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
+
 myandroid () {
-   export ANDROID_HOME=${HOME}/Android/Sdk
-   export PATH="${ANDROID_HOME}/tools:${PATH}"
+   cd $ANDROID_HOME
+}
+androidenv () {
+   export PATH="${ANDROID_HOME}/tools/bin:${PATH}"
    export PATH="${ANDROID_HOME}/emulator:${PATH}"
    export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
+   export PATH="${ANDROID_HOME}/build-tools/33.0.0:${PATH}"
+   reduce PATH
 }
+
 mycad () { cd "$TPSUP/../freecad"; }
 mycpp () { cd "$TPSUP/../cpp"; }
 myduino () { cd "$TPSUP/../arduino"; }
