@@ -133,13 +133,6 @@ kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 myandroid () {
    cd $ANDROID_HOME
 }
-androidenv () {
-   export PATH="${ANDROID_HOME}/tools/bin:${PATH}"
-   export PATH="${ANDROID_HOME}/emulator:${PATH}"
-   export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
-   export PATH="${ANDROID_HOME}/build-tools/33.0.0:${PATH}"
-   reduce PATH
-}
 
 mycad () { cd "$TPSUP/../freecad"; }
 mycpp () { cd "$TPSUP/../cpp"; }
