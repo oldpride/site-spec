@@ -92,14 +92,14 @@ elif [[ $UNAME =~ Cygwin ]]; then
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
    export ANDROID_HOME="/cygdrive/c/Users/william/AppData/Local/Android/Sdk"
-   export ANDROID_STUDIO="/cygdrive/c/Program Files/Android/Android Studio/bin/studio64.sh"
+   export ANDROID_STUDIO="/cygdrive/c/Program Files/Android/Android Studio/bin/studio64.exe"
 elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
    export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
    export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
-   export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.sh"
+   export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
 elif [[ $UNAME =~ MINGW ]]; then
    # this is gitbash
    # for gitbash and for Windows in general, there is no binary exe "python3". to make it working, make a link
@@ -114,7 +114,7 @@ elif [[ $UNAME =~ MINGW ]]; then
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
    export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
-   export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.sh"
+   export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
 fi
 
 . "$TPSUP"/profile
