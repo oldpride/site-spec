@@ -121,12 +121,14 @@ fi
 
 java11 () {
    if [[ $UNAME =~ Linux ]]; then
-      echo "not supported yet"
+      export JAVA_HOME="/usr/lib/jvm/java-1.11.0-openjdk-amd64"
    elif [[ $UNAME =~ Cygwin ]]; then
       export JAVA_HOME="/cygdrive/c/Program Files/Java/jdk-11.0.16.1"
    elif [[ $UNAME =~ MINGW ]]; then
       export JAVA_HOME="/c/Program Files/Java/jdk-11.0.16.1"
    fi
+
+   echo "JAVA_HOME=$JAVA_HOME"
 }
 
 testreduce () { echo "test reduce"; reduce all;}
@@ -134,9 +136,7 @@ testreduce () { echo "test reduce"; reduce all;}
 kdbnotes () { cd "$TPSUP/../kdb/notes"; }
 kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 
-myandroid () {
-   cd $ANDROID_HOME
-}
+myandroid  () { cd "$SITEBASE/github/android"; }
 
 mycad () { cd "$TPSUP/../freecad"; }
 mycpp () { cd "$TPSUP/../cpp"; }
