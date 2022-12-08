@@ -137,6 +137,7 @@ kdbnotes () { cd "$TPSUP/../kdb/notes"; }
 kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 
 myandroid  () { cd "$SITEBASE/github/android"; }
+myangular  () { cd "$SITEBASE/github/angular"; }
 
 mycad () { cd "$TPSUP/../freecad"; }
 mycpp () { cd "$TPSUP/../cpp"; }
@@ -247,26 +248,6 @@ usage:
    # for authencationless proxy
    # export http_proxy=http://host:port
    # export https_proxy=http://host:port
-}
-
-nodeenv () {
-   # npm installation folder when running 
-   #    $ npm install --global yarn
-   # files go to
-   #       %USERPROFILE%\AppData\Roaming\npm\node_modules\yarn\bin\yarn.exe
-   #    C:\Users\william\AppData\Roaming\npm\node_modules\yarn\bin\yarn.exe
-   # tpsup/profile set WINHOME %USERPROFILE%
-   #
-   #  yarn installation path - %LOCALAPPDATA%\yarn\bin
-   #     yarn info ganache-cli
-   #  files goes to
-   #     C:\Users\william\AppData\Local\Yarn\bin
-   
-   if [[ $UNAME =~ Cygwin ]]; then
-      export PATH="/cygdrive/c/Program Files/nodjs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$WINHOME/AppData/Local/Yarn/bin:$PATH"
-   elif [[ $UNAME =~ Msys ]]; then
-      export PATH="/c/Program Files/nodejs:$WINHOME/AppData/Roaming/npm/node_modules/yarn/bin:$WINHOME/AppData/Local/Yarn/bin:$PATH"
-   fi
 }
 
 TP_REDUCE_DISABLE=Y
