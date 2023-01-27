@@ -115,6 +115,8 @@ elif [[ $UNAME =~ MINGW ]]; then
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
    export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
+#elif [[ $UNAME =~ WSL2 ]]; then
+   # Linux tianpc2 5.15.79.1-microsoft-standard-WSL2 #1 SMP Wed Nov 23 01:01:46 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
 fi
 
 . "$TPSUP"/profile
