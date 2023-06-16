@@ -55,9 +55,30 @@ sitebase () {
    cd "$SITEBASE"
 }
 
-siteenv () {
-   . "$SITEBASE"/github/site-spec/profile
-}
+siteenv () { . "$SITEBASE"/github/site-spec/profile; }
+
+#siteenv2 () {
+#   #. "$SITEBASE"/github/site-spec/profile
+#   SITEPROFILE="$SITEBASE/github/site-spec/profile"
+#   if [ -f "$SITEPROFILE" ]; then
+#      . "$SITEPROFILE"
+#   elif [[ $(type -t convertpath) == function ]]; then
+#      # We cannot find the profile maybe because bash's hosting terminal is changed, 
+#      # For example, 
+#      #    if we started with cygwin, cygwin is our bash's hosting terminal, cygwin
+#      #       uses .bash_profile, having siteenv point to /cygdrive/c/user/ ...
+#      #    next we launch vscode from cygwin, and then from vscode launch bash,
+#      #       the bash inside vscode will be hosted by a gitbash terminal.
+#      #       gitbash terminal expects file path to be /c/user/...,
+#      #       however, the path in siteenv function is /cygdrive/c/user/..., inherited 
+#      #       from env or .bash_profile. therefore, we need to convert it.
+#      convertpath -e -i SITEPROFILE
+#      . "$SITEPROFILE"
+#   else
+#      # try anyway
+#      . "$SITEPROFILE"
+#   fi
+#}
 
 export UNAME=`uname -a`
 
