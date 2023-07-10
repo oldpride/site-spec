@@ -101,7 +101,7 @@ if [[ $UNAME =~ Linux ]]; then
    export TP_P3_PATH="$SITEBASE/python3/Linux/bin"
    export TP_P2_PATH="/usr/bin"
 
-   export SITEVENV="$SITEBASE/python3/venv/Linux/Linux4.15-python3.8"
+   export SITEVENV="$SITEBASE/python3/venv/Linux/Linux5.15-python3.10"
    export ANDROID_HOME=${HOME}/Android/Sdk             # this is required by android sdk
    export ANDROID_STUDIO=${HOME}/Android/android-studio/bin/studio.sh # this is tpsup-specific
 elif [[ $UNAME =~ Cygwin ]]; then
