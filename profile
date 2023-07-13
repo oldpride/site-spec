@@ -227,7 +227,7 @@ perltestenv () {
    reduce PERL5LIB
 }
 
-lca () { cd /media/sdcard/LCA/`date +%Y%m%d` && ls -l; }
+lca () { cd /media/sdcard/LCA/ && ls; }
 
 vncserver () { /usr/bin/vncserver -geometry 1366x768 "$@"; }
 
