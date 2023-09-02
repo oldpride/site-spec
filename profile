@@ -82,23 +82,24 @@ siteenv () { . "$SITEBASE"/github/site-spec/profile; }
 
 export UNAME=`uname -a`
 
-if [[ $UNAME =~ Linux ]]; then
+if [[ $UNAME =~ ^(Linux|Darwin) ]]; then
+   # echo "${BASH_SOURCE}:${LINENO}" # line number
+   TP_OS=${BASH_REMATCH[1]}
+   TP_OS_VERSION=`echo $UNAME|cut -d' ' -f3|cut -d. -f1-2` # major.minors
    sitevim () {
       # if the site has no full-featured vim, install it and then turn on this function
       if [[ $TERM =~ xterm|^vt ]]; then
          echo -ne "\033]0;vim $@\007"
       fi
 
-      LD_LIBRARY_PATH=$SITEBASE/Linux/$Linux/usr/lib64 TERMINFO=/usr/share/terminfo $SITEBASE/Linux/$Linux/usr/bin/vim "$@"
+      LD_LIBRARY_PATH=$SITEBASE/$TP_OS/$Linux/usr/lib64 TERMINFO=/usr/share/terminfo $SITEBASE/Linux/$Linux/usr/bin/vim "$@"
    }
-fi
 
-if [[ $UNAME =~ Linux ]]; then
    # for linux, /usr/bin/python is versio 2, /usr/bin/python3 is version 3
    # we make a symbolic of $SITEBASE/python3/Linux/bin/python from /usr/bin/python3
    # so that our shell script can have a consistent "#!/usr/bin/env python"
    # $ ln -s /usr/bin/python3 $SITEBASE/python3/Linux/bin/python3
-   export TP_P3_PATH="$SITEBASE/python3/Linux/bin"
+   export TP_P3_PATH="$SITEBASE/python3/$TP_OS/bin"
    export TP_P2_PATH="/usr/bin"
 
    
@@ -106,7 +107,8 @@ if [[ $UNAME =~ Linux ]]; then
       # WSL Linux
       export SITEVENV="$SITEBASE/python3/venv/Linux/Linux5.15-python3.8"
    else
-      export SITEVENV="$SITEBASE/python3/venv/Linux/Linux5.15-python3.10"
+      # echo "${BASH_SOURCE}:${LINENO}"
+      export SITEVENV="$SITEBASE/python3/venv/$TP_OS/${TP_OS}${TP_OS_VERSION}-python3.10"
    fi
    export ANDROID_HOME=${HOME}/Android/Sdk             # this is required by android sdk
    export ANDROID_STUDIO=${HOME}/Android/android-studio/bin/studio.sh # this is tpsup-specific
