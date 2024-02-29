@@ -4,6 +4,7 @@ angular
 antlr
 arduino
 blockchain
+books
 cpp
 dice
 django
@@ -18,6 +19,7 @@ lca
 lca_app
 nativescript
 notes
+notes2
 site-spec
 terraform
 tpsup

@@ -168,15 +168,9 @@ kdbnotes () { cd "$TPSUP/../kdb/notes"; }
 kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 
 myandroid  () { cd "$SITEBASE/github/android"; }
-myangular  () { cd "$SITEBASE/github/angular"; }
 
 mycad () { cd "$TPSUP/../freecad"; }
-mycpp () { cd "$TPSUP/../cpp"; }
-myduino () { cd "$TPSUP/../arduino"; }
 myvbs () { cd "$TPSUP/vbs"; }
-mydice () { cd "$SITEBASE/github/dice/scripts"; }
-mydjango () { cd "$SITEBASE/github/django_tutorial"; }
-myfront () { cd "$TPSUP/../frontend"; }
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
       cd /c/users/$USER/eclipse-workspace
@@ -189,13 +183,10 @@ myjava () {
    fi
 }
 myjoomla () { cd "$TPSUP/../joomla/php"; }
-mykivy () { cd "$TPSUP/../kivy"; }
 mynotes () { cd "$TPSUP/../notes"; }
-myns () { cd "$SITEBASE/github/nativescript"; }
-myperllib () { cd "$TPSUP/lib/perl/TPSUP"; }
+mynotes2 () { cd "$TPSUP/../notes2"; }
 myperltest () { cd "$TPSUP/lib/perltest"; }
 mypkg () { cd "$SITESPEC/cfg/pkgs"; }
-myrpm () { cd "$TPSUP/../rpm"; }
 mysamba () {
    if [[ $UNAME =~ Linux ]]; then
       cd ~/sambashare
