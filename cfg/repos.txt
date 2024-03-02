@@ -20,7 +20,8 @@ lca_app
 nativescript
 notes
 notes2
-school
+schoolbook
+schoolproj
 site-spec
 terraform
 tpsup
