@@ -28,4 +28,5 @@ terraform
 tpsup
 vercel01_basic
 vue
+wasm
 wordpress
