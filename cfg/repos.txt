@@ -25,6 +25,7 @@ schoolbook
 schoolproj
 site-spec
 terraform
+torch
 tpsup
 vercel01_basic
 vue

@@ -101,7 +101,6 @@ if [[ $UNAME =~ ^(Linux|Darwin) ]]; then
    # $ ln -s /usr/bin/python3 $SITEBASE/python3/Linux/bin/python3
    export TP_P3_PATH="$SITEBASE/python3/$TP_OS/bin"
    export TP_P2_PATH="/usr/bin"
-
    
    if [[ $UNAME =~ microsoft-standard-WSL2 ]]; then
       # WSL Linux
@@ -112,6 +111,7 @@ if [[ $UNAME =~ ^(Linux|Darwin) ]]; then
    fi
    export ANDROID_HOME=${HOME}/Android/Sdk             # this is required by android sdk
    export ANDROID_STUDIO=${HOME}/Android/android-studio/bin/studio.sh # this is tpsup-specific
+   export MYTEAM="${HOME}/team"
 elif [[ $UNAME =~ Cygwin ]]; then
    # for Cygwin and for Windows in general, there is no binary exe "python3". to make it working, make a link
    # do the following from Cygwin
@@ -122,6 +122,7 @@ elif [[ $UNAME =~ Cygwin ]]; then
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
    export ANDROID_HOME="/cygdrive/c/Users/william/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/cygdrive/c/Program Files/Android/Android Studio/bin/studio64.exe"
+   export MYTEAM="/cygdrive/c/users/$USERNAME/team"
 elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
    export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
@@ -129,6 +130,7 @@ elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
    export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
+   export MYTEAM="/c/users/$USERNAME/team"
 elif [[ $UNAME =~ MINGW ]]; then
    # this is gitbash
    # for gitbash and for Windows in general, there is no binary exe "python3". to make it working, make a link
@@ -144,6 +146,7 @@ elif [[ $UNAME =~ MINGW ]]; then
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
    export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
+   export MYTEAM="/c/users/$USERNAME/team"
 #elif [[ $UNAME =~ WSL2 ]]; then
    # Linux tianpc2 5.15.79.1-microsoft-standard-WSL2 #1 SMP Wed Nov 23 01:01:46 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
 fi
@@ -277,7 +280,7 @@ TP_REDUCE_DISABLE=Y
 
 p3env -q  # this command takes about 2 seconds as it calls reduce()
 
-nodeenv
+nodeenv set
 
 # https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 # -a  Each variable or function that is created or modified is given the export attribute
