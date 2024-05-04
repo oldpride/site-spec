@@ -24,6 +24,7 @@ rust
 schoolbook
 schoolproj
 site-spec
+study
 terraform
 torch
 tpsup
