@@ -33,11 +33,11 @@ rem use call so that control will return to the calling batch file.
 call "%SITEBASE%\github\tpsup\cmd_exe\tpsup.cmd"
 
 rem the following will be used by tpsup/cmd_exe/p3env.exe
-set "TP_P3_PATH=C:\Program Files\Python3.10;C:\Program Files\Python3.10\Scripts;C:\Users\%USERNAME%\AppData\Roaming\Python\Python310\Scripts"
+set "TP_P3_PATH=C:\Program Files\Python312;C:\Program Files\Python312\Scripts;C:\Users\%USERNAME%\AppData\Roaming\Python\Python312\Scripts"
 rem set "TP_P3_PYTHONPATH=%SITEBASE%\Windows\Win10-Python3.7\lib\site-packages" 
 rem call p3env
 
-set "SITEVENV=%SITEBASE%\python3\venv\Windows\win10-python3.10"
+set "SITEVENV=%SITEBASE%\python3\venv\Windows\win10-python312"
 
 :: ========== FUNCTIONS ==========
 EXIT /B

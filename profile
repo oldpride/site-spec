@@ -107,7 +107,7 @@ if [[ $UNAME =~ ^(Linux|Darwin) ]]; then
       export SITEVENV="$SITEBASE/python3/venv/Linux/Linux5.15-python3.8"
    else
       # echo "${BASH_SOURCE}:${LINENO}"
-      export SITEVENV="$SITEBASE/python3/venv/$TP_OS/${TP_OS}${TP_OS_VERSION}-python3.10"
+      export SITEVENV="$SITEBASE/python3/venv/$TP_OS/${TP_OS}${TP_OS_VERSION}-python3.12"
    fi
    export ANDROID_HOME=${HOME}/Android/Sdk             # this is required by android sdk
    export ANDROID_STUDIO=${HOME}/Android/android-studio/bin/studio.sh # this is tpsup-specific
@@ -115,36 +115,36 @@ if [[ $UNAME =~ ^(Linux|Darwin) ]]; then
 elif [[ $UNAME =~ Cygwin ]]; then
    # for Cygwin and for Windows in general, there is no binary exe "python3". to make it working, make a link
    # do the following from Cygwin
-   #    $ ln -s /cygdrive/c/Program\ Files/Python3.10/python $SITEBASE/python3/Cygwin/bin/python3
-   export TP_P3_PATH="/cygdrive/c/Program Files/Python3.10:$SITEBASE/python3/Cygwin/bin:/cygdrive/c/Program Files/Python3.10/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
+   #    $ ln -s /cygdrive/c/Program\ Files/Python3.12/python $SITEBASE/python3/Cygwin/bin/python3
+   export TP_P3_PATH="/cygdrive/c/Program Files/Python312:$SITEBASE/python3/Cygwin/bin:/cygdrive/c/Program Files/Python312/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python312/Scripts"
    export TP_P2_PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts"
 
-   export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
-   export ANDROID_HOME="/cygdrive/c/Users/william/AppData/Local/Android/Sdk"
+   export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.12"
+   export ANDROID_HOME="/cygdrive/c/Users/$USERNAME/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/cygdrive/c/Program Files/Android/Android Studio/bin/studio64.exe"
    export MYTEAM="/cygdrive/c/users/$USERNAME/team"
 elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
-   export TP_P3_PATH="/c/Program Files/Python3.10:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
+   export TP_P3_PATH="/c/Program Files/Python312:/c/Program Files/Python312/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python312/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
 
-   export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
-   export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
+   export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.12"
+   export ANDROID_HOME="/c/Users/$USERNAME/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
    export MYTEAM="/c/users/$USERNAME/team"
 elif [[ $UNAME =~ MINGW ]]; then
    # this is gitbash
    # for gitbash and for Windows in general, there is no binary exe "python3". to make it working, make a link
    # do the following from gitbash
-   #    ln -s "/c/Program Files/Python3.10/python" $SITEBASE/python3/MINGW/bin/python3
-   export TP_P3_PATH="/c/Program Files/Python3.10:$SITEBASE/python3/MINGW/bin:/c/Program Files/Python3.10/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
+   #    ln -s "/c/Program Files/Python312/python" $SITEBASE/python3/MINGW/bin/python3
+   export TP_P3_PATH="/c/Program Files/Python312:$SITEBASE/python3/MINGW/bin:/c/Program Files/Python312/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python310/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
 
    # GitBash buffers stdout by default. Disable the bufferring
    # https://stackoverflow.com/questions/107705/disable-output-buffering
    export PYTHONUNBUFFERED=Y
 
-   export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.10"
-   export ANDROID_HOME="/c/Users/william/AppData/Local/Android/Sdk"
+   export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.12"
+   export ANDROID_HOME="/c/Users/$USERNAME/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
    export MYTEAM="/c/users/$USERNAME/team"
 #elif [[ $UNAME =~ WSL2 ]]; then
