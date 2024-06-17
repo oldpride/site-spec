@@ -3,7 +3,7 @@
 rem For convenience, add a a wrapper script at cmd.exe's home dir, so that user can run it once cmd.exe launched.
 rem the wrapper script can be named the same for consistency,  %HOMEDRIVE%%HOMEPATH%\siteenv.cmd which has
 rem just one line
-rem    call "C:\users\%username%\sitebase\github\site-spec\cmd_exe\siteenv.cmd"
+rem    call "C:\users\%username%\sitebase\github\site-spec\bat\siteenv.cmd"
 rem
 rem note; cmd.exe's home dir, which is %HOMEDRIVE%%HOMEPATH%, not %USERPROFILE%.
 rem %USERPROFILE% is always C:\Users\%USERNAME%, but sometimes, inside company, home dir is H:\. therefore
@@ -30,14 +30,15 @@ set "SITEBASE=%RETVAL%"
 echo SITEBASE=%SITEBASE%
 
 rem use call so that control will return to the calling batch file.
-call "%SITEBASE%\github\tpsup\cmd_exe\tpsup.cmd"
+call "%SITEBASE%\github\tpsup\bat\tpsup.cmd"
 
-rem the following will be used by tpsup/cmd_exe/p3env.exe
+rem the following will be used by tpsup/bat/p3env.exe
 set "TP_P3_PATH=C:\Program Files\Python312;C:\Program Files\Python312\Scripts;C:\Users\%USERNAME%\AppData\Roaming\Python\Python312\Scripts"
-rem set "TP_P3_PYTHONPATH=%SITEBASE%\Windows\Win10-Python3.7\lib\site-packages" 
-rem call p3env
+echo TP_P3_PATH=%TP_P3_PATH%
 
-set "SITEVENV=%SITEBASE%\python3\venv\Windows\win10-python312"
+
+set "SITEVENV=%SITEBASE%\python3\venv\Windows\win10-python3.12"
+echo SITEVENV=%SITEVENV%
 
 :: ========== FUNCTIONS ==========
 EXIT /B

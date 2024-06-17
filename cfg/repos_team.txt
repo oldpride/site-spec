@@ -1,6 +1,7 @@
-https://github.com/buffetenjoyer/java.git
-https://github.com/buffetenjoyer/notes.git
-https://github.com/buffetenjoyer/python.git
-https://github.com/buffetenjoyer/rutgersHWsn.git
-https://github.com/emily1011/DataStructures
-https://github.com/weip2008/LearnTorch.git
+url,branch
+https://github.com/buffetenjoyer/java.git,
+https://github.com/buffetenjoyer/notes.git,
+https://github.com/buffetenjoyer/python.git,
+https://github.com/buffetenjoyer/rutgersHWs.git,
+https://github.com/emilyh1011/DataStructures.git,
+https://github.com/weip2008/LearnTorch.git,master
