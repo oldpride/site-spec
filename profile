@@ -119,7 +119,7 @@ elif [[ $UNAME =~ Cygwin ]]; then
    export TP_P3_PATH="/cygdrive/c/Program Files/Python312:$SITEBASE/python3/Cygwin/bin:/cygdrive/c/Program Files/Python312/scripts:/cygdrive/c/Users/$USERNAME/AppData/Roaming/Python/Python312/Scripts"
    export TP_P2_PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts"
 
-   export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python31.2"
+   export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.12"
    export ANDROID_HOME="/cygdrive/c/Users/$USERNAME/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/cygdrive/c/Program Files/Android/Android Studio/bin/studio64.exe"
    export MYTEAM="/cygdrive/c/users/$USERNAME/team"
