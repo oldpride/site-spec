@@ -291,6 +291,8 @@ set +a
 #     before printing the next primary prompt.
 set -b
 
+load_profile_d "$SITESPEC/profile.d"
+
 # todo: should I export (set -a; set -b) first or reduce first?
 unset TP_REDUCE_DISABLE
 reduce all
