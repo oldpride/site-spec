@@ -21,6 +21,7 @@ lca_app
 nativescript
 notes
 notes2
+plant
 rust
 schoolbook
 schoolproj

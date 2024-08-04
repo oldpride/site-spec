@@ -36,9 +36,12 @@ rem the following will be used by tpsup/bat/p3env.exe
 set "TP_P3_PATH=C:\Program Files\Python312;C:\Program Files\Python312\Scripts;C:\Users\%USERNAME%\AppData\Roaming\Python\Python312\Scripts"
 echo TP_P3_PATH=%TP_P3_PATH%
 
-
 set "SITEVENV=%SITEBASE%\python3\venv\Windows\win10-python3.12"
 echo SITEVENV=%SITEVENV%
+
+rem set ANDROID_HOME
+set "ANDROID_HOME=C:\Users\%USERNAME%\AppData\Local\Android\Sdk"
+echo ANDROID_HOME=%ANDROID_HOME%
 
 :: ========== FUNCTIONS ==========
 EXIT /B
