@@ -35,6 +35,9 @@ get_bash_source () {
    fi
 }
 
+# set -x
+# echo "BASH_SOURCE=$BASH_SOURCE"
+
 get_bash_source || return $?
 # [ $TP_BASH_SOURCE_FOUND = Y ] || return $?
 # example:
