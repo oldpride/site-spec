@@ -9,6 +9,7 @@ books
 cpp
 dice
 django
+docs
 frontend
 java
 joomla
