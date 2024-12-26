@@ -134,8 +134,13 @@ elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
    export ANDROID_HOME="/c/Users/$USERNAME/AppData/Local/Android/Sdk"
    export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
    export MYTEAM="/c/users/$USERNAME/team"
-elif [[ $UNAME =~ MINGW ]]; then
-   # this is gitbash
+elif [[ $UNAME =~ Msys ]]; then
+   # this is gitbash. gitbash uname can start with either MSYS_NT or MINGW_NT but
+   # seems always ending with Msys
+   #
+   # MSYS_NT-10.0-19045 tianpc2 3.4.10-87d57229.x86_64 2024-02-14 20:17 UTC x86_64 Msys
+   # MINGW_NT-10.0-19045 tianpc2 3.4.10-87d57229.x86_64 2024-02-14 20:17 UTC x86_64 Msys
+   #
    # for gitbash and for Windows in general, there is no binary exe "python3". 
    # to make python3 working, make a link
    #    ln -s "/c/Program Files/Python312/python" "$SITEBASE/python3/MINGW/bin/python3"
