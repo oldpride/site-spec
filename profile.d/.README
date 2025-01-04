@@ -1,0 +1,2 @@
+normally "git add" only register files; therefore, empty folders will be left out.
+this file is for "git add" to pick up the folder which otherwise would be empty.
