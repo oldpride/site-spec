@@ -107,7 +107,7 @@ if [[ $UNAME =~ ^(Linux|Darwin) ]]; then
    
    if [[ $UNAME =~ microsoft-standard-WSL2 ]]; then
       # WSL Linux
-      export SITEVENV="$SITEBASE/python3/venv/Linux/Linux5.15-python3.8"
+      export SITEVENV="$SITEBASE/python3/venv/Linux/Linux5.15-python3.12"
    else
       # echo "${BASH_SOURCE}:${LINENO}"
       export SITEVENV="$SITEBASE/python3/venv/$TP_OS/${TP_OS}${TP_OS_VERSION}-python3.12"
