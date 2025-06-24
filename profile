@@ -159,6 +159,8 @@ elif [[ $UNAME =~ Msys ]]; then
    # Linux tianpc2 5.15.79.1-microsoft-standard-WSL2 #1 SMP Wed Nov 23 01:01:46 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
 fi
 
+export RUN_TERMPOS=Y # see tpsup/profile
+
 . "$TPSUP"/profile
 
 java11 () {
@@ -284,6 +286,8 @@ usage:
 }
 
 TP_REDUCE_DISABLE=Y
+
+
 
 
 p3env -q  # this command takes about 2 seconds as it calls reduce()
