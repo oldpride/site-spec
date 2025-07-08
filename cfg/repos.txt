@@ -18,7 +18,6 @@ kdb
 kivy
 kungfusql
 lca
-lca_app
 nativescript
 notes
 notes2
