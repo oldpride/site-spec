@@ -113,6 +113,7 @@ if [[ $UNAME =~ ^(Linux|Darwin) ]]; then
       export SITEVENV="$SITEBASE/python3/venv/$TP_OS/${TP_OS}${TP_OS_VERSION}-python3.12"
    fi
    export ANDROID_HOME=${HOME}/Android/Sdk             # this is required by android sdk
+   export ANDROID_HOME_TERM_SPECIFIC=${ANDROID_HOME} 
    export ANDROID_STUDIO=${HOME}/Android/android-studio/bin/studio.sh # this is tpsup-specific
    export MYTEAM="${HOME}/team"
 elif [[ $UNAME =~ Cygwin ]]; then
@@ -123,16 +124,32 @@ elif [[ $UNAME =~ Cygwin ]]; then
    export TP_P2_PATH="/cygdrive/c/Program Files/Python27:/cygdrive/c/Program Files/Python27/scripts"
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.12"
-   export ANDROID_HOME="/cygdrive/c/Users/$USERNAME/AppData/Local/Android/Sdk"
-   export ANDROID_STUDIO="/cygdrive/c/Program Files/Android/Android Studio/bin/studio64.exe"
+
+   # Android vars needs to use C:/ style 
+   # when appium starts from from cygwin, it will remember the ANDROID_HOME.
+   # if the ANDROID_HOME starts with /cygdrive/c, then some internal calling will have problems:
+   #    connecting to appium_server_url=http://localhost:4723/wd/hub
+   #    Exception: Message: An unknown server-side error occurred while processing the command. 
+   #    Original error: The Android SDK root folder '/cygdrive/c/Users/tian/AppData/Local/Android/Sdk'
+   #    does not exist on the local file system. 
+   # but to make "adb devices" work in cygwin terminal, we need ANDROID_HOME_TERM_SPECIFIC 
+   # to be /cygdrive/c/...
+   export ANDROID_HOME="C:/Users/$USERNAME/AppData/Local/Android/Sdk"  
+   export ANDROID_HOME_TERM_SPECIFIC="/cygdrive/c/Users/$USERNAME/AppData/Local/Android/Sdk"
+   export ANDROID_STUDIO="C:/Program Files/Android/Android Studio/bin/studio64.exe"
+
    export MYTEAM="/cygdrive/c/users/$USERNAME/team"
 elif [ "X$TERM_PROGRAM" = "Xvscode" ]; then
    export TP_P3_PATH="/c/Program Files/Python312:/c/Program Files/Python312/scripts:/c/Users/$USERNAME/AppData/Roaming/Python/Python312/Scripts"
    export TP_P2_PATH="/c/Program Files/Python27:/c/Program Files/Python27/scripts"
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.12"
-   export ANDROID_HOME="/c/Users/$USERNAME/AppData/Local/Android/Sdk"
-   export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
+
+   # need to use C:/ style for Android. see above
+   export ANDROID_HOME="C:/Users/$USERNAME/AppData/Local/Android/Sdk"
+   export ANDROID_HOME_TERM_SPECIFIC="/c/Users/$USERNAME/AppData/Local/Android/Sdk"
+   export ANDROID_STUDIO="C:/Program Files/Android/Android Studio/bin/studio64.exe"
+
    export MYTEAM="/c/users/$USERNAME/team"
 elif [[ $UNAME =~ Msys ]]; then
    # this is gitbash. gitbash uname can start with either MSYS_NT or MINGW_NT but
@@ -152,8 +169,12 @@ elif [[ $UNAME =~ Msys ]]; then
    export PYTHONUNBUFFERED=Y
 
    export SITEVENV="$SITEBASE/python3/venv/Windows/win10-python3.12"
-   export ANDROID_HOME="/c/Users/$USERNAME/AppData/Local/Android/Sdk"
-   export ANDROID_STUDIO="/c/Program Files/Android/Android Studio/bin/studio64.exe"
+
+   # need to use C:/ style for Android. see above
+   export ANDROID_HOME="C:/Users/$USERNAME/AppData/Local/Android/Sdk"
+   export ANDROID_HOME_TERM_SPECIFIC="/c/Users/$USERNAME/AppData/Local/Android/Sdk"
+   export ANDROID_STUDIO="C:/Program Files/Android/Android Studio/bin/studio64.exe"
+
    export MYTEAM="/c/users/$USERNAME/team"
 #elif [[ $UNAME =~ WSL2 ]]; then
    # Linux tianpc2 5.15.79.1-microsoft-standard-WSL2 #1 SMP Wed Nov 23 01:01:46 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
