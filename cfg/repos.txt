@@ -10,6 +10,7 @@ cpp
 dice
 django
 docs
+freecad
 frontend
 java
 joomla
