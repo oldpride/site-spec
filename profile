@@ -1,6 +1,12 @@
 # you can add this one liner to user's .profile or .bash_profile
 #   siteenv () { . ~/sitebase/github/site-spec/profile }
 
+# if siteenv had a bug, you could do the following
+#    1. start a new terminal without sourcing siteenv
+#    2. set -x
+#    3. siteenv 2>/tmp/junk
+#    4. search in /tmp/junk for any error
+
 # this is for Cygwin
 if [ "X$USERNAME" = "X" ]; then
    if [ "X$LOGNAME" != "X" ]; then
