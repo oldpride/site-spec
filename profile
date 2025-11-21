@@ -314,9 +314,6 @@ usage:
 
 TP_REDUCE_DISABLE=Y
 
-
-
-
 p3env -q  # this command takes about 2 seconds as it calls reduce()
 
 nodeenv set
