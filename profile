@@ -209,7 +209,7 @@ kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 
 myandroid  () { cd "$SITEBASE/github/android"; }
 
-mycad () { cd "$TPSUP/../freecad"; }
+mycad () { cd "$TPSUP/../freecad"; addpath -e PYTHONPATH macro; }
 myvbs () { cd "$TPSUP/vbs"; }
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
@@ -222,6 +222,7 @@ myjava () {
       echo "UNAME='$UNAME' is not supported"
    fi
 }
+ag () { ( set -x; antigravity "$@"; ) }
 myjoomla () { cd "$TPSUP/../joomla/php"; }
 mynotes () { cd "$TPSUP/../notes"; }
 mynotes2 () { cd "$TPSUP/../notes2"; }
