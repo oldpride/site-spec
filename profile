@@ -210,7 +210,11 @@ kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 myandroid  () { cd "$SITEBASE/github/android"; }
 
 mycadcoder () { cd "$TPSUP/../cadcoder"; addpath -e PYTHONPATH .; }
-myfreecad () { cd "$TPSUP/../freecad"; addpath -e PYTHONPATH macro; }
+myfreecad () { 
+   cd "$TPSUP/../freecad"; 
+   addpath -e PYTHONPATH macro;
+   addpath -e PYTHONPATH "$TPSUP/../huge"; 
+}
 myvbs () { cd "$TPSUP/vbs"; }
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
@@ -330,6 +334,12 @@ set +a
 set -b
 
 load_profile_d "$SITESPEC/profile.d"
+
+# in case that a cygwin/gitbash is launched from a cmd.exe which is in python venv,
+# we unset the venv variables; because otherwise when we "svenv" in the 
+# cygwin/gitbash, the "diactivate" function will put cmd.exe's PATH (';' separated)
+# into cygwin/gitbash's PATH, ending with 'command not found'.
+unsetvenv
 
 # todo: should I export (set -a; set -b) first or reduce first?
 unset TP_REDUCE_DISABLE
