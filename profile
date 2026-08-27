@@ -210,11 +210,11 @@ kungfusql () { cd "$TPSUP/../com_kungfulsql"; }
 myandroid  () { cd "$SITEBASE/github/android"; }
 
 mycadcoder () { cd "$TPSUP/../cadcoder"; addpath -e PYTHONPATH .; }
-myfreecad () { 
-   cd "$TPSUP/../freecad"; 
-   addpath -e PYTHONPATH macro;
-   addpath -e PYTHONPATH "$TPSUP/../huge"; 
-}
+#myfreecad () { 
+#          cd "$TPSUP/../freecad"; 
+#   addpath -e PYTHONPATH macro;
+#   addpath -e PYTHONPATH "$TPSUP/../huge"; 
+#}
 myvbs () { cd "$TPSUP/vbs"; }
 myjava () {
    if [[ $UNAME =~ Msys ]]; then
